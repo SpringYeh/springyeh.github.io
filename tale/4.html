@@ -288,64 +288,7 @@
 <p>“对啊。”罗瑟得意。</p>
 
           </article>
-        </div><script>
-//暂时储存文章中的内容
-var div = $('.chapter__content.content');
-
-function password() {
-  if(''){
-
-  //将文章内容删除
-    div.remove();
-  //将文章删除后，向原来文章的地方添加，应该出现的提示用户输入密码的样式
-  //下面这里的第一个用textarea是因为如果在手机端的时候只能显示一部分文字，
-  //只是拓展:input里面的字只能显示一行，不会自动换行，目前上网搜索没有发现好的办法，所以用了textarea，右下角的小三角通过resize:none 去掉。
-   $('.chapter__inner').after('<textarea class="description" value="Please input password and press enter:" style="border: none;display: block;' +'width: 60%;margin: 0 auto;text-align: center;outline: none;margin-bottom: 50px;resize:none ">Please input password and press enter:</textarea>' +
-      '<div class="qiang" style="height: 100px;width: 60%;margin:0 auto">' +
-      '<input class="password"  type="text" value="" style="border: none;display: block;border-bottom: 1px solid #ccc;' +
-      'margin: 0 auto;outline: none;width:95%"/>' +
-      '</div>')
-      //绑定点击事件，如果是点击的.password 这个div就改变样式，如果是document中除了div之外的其他任何元素，就变回原来的样式。
-    document.onclick = function (event) {
-      var e = event || window.event;
-      var elem = e.srcElement || e.target;
-
-      while (elem) {
-        if (elem != document) {
-          if (elem.className == "password") {
-            $(".password").animate({paddingTop:"30px",width:"100%",borderWidth:"2px"},300)
-            return;
-          }
-          elem = elem.parentNode;
-        } else {
-          $(".password").animate({paddingTop:"0px",width:"95%",borderWidth:"1px"},300)
-          return;
-        }
-      }
-    }
-    //绑定enter键按下后离开的事件
-    $(document).keyup(function(event){
-      if(event.keyCode ==13&&$('.password').length>0){
-        //console.log($('.password').val())
-        //console.log('')
-        if ($('.password').val() == '') {
-
-        //恢复文章内容
-          div.appendTo($('.chapter__inner'))
-        //删除本页面的输入密码组件
-          $(".description").remove();
-          $(".qiang").remove();
-          $(".password").remove();  
-        }else {
-          alert("ERROR！！！东厂也需要你这样的人才")
-        }
-      }
-      //将document的keyup移除，防止在pjax的情况下会重复绑定事件
-    });
-  }
-}
-password();
-</script><footer class="site-footer">
+        </div><footer class="site-footer">
   © 2019<a href="/">一叶知秋</a>. All rights reserved.
 </footer>
 </main>
@@ -356,6 +299,20 @@ password();
   <path d="M12 30 L24 16 12 2" />
 </svg>
 </a></div>
-</div>
+</div><script>
+  function changeCss() {
+    // console.log( '万事集' );
+    if('万事集'== '诗'){
+      var demo = document.querySelector('.chapter__content');
+      demo.style.textAlign = "center";
+      console.log( '万事集'+' : function run' );
+    }
+    else{
+      console.log( '!诗'+' : function do not run' );
+    }
+  }
+  changeCss();
+</script>
+
   </body>
 </html>

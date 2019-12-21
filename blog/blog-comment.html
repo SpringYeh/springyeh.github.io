@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>博客评论系统 | 一叶知秋</title><link rel="icon" href="https://cinzano.oss-cn-shanghai.aliyuncs.com/erlim/img/ye.ico">
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4dd501d4008a35eb9ed49134771ca981";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="">
+  <meta name="description" content=""><link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+	<!--<link rel="stylesheet" href="/assets/css/tomorrow.css" />
+	<script src="/assets/js/highlight.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script> -->
+	<!-- prism插件代码风格 -->
+	<link rel="stylesheet" href="/assets/css/prism.css" />
+	<script src="/assets/js/prism.js"></script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Config({
+	      tex2jax: {
+	        inlineMath: [['$','$'], ['\\(','\\)']],
+	      }
+	    });
+	</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script><link rel="stylesheet" href="/assets/css/custom.css" />
+<!-- 页面点击小红心 -->
+<script src="/assets/js/love.js"></script>
+
+<!-- 页面点击爆炸效果
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="/assets/js/fireworks.js"></script>
+-->
+</head>
+<body class="body-post">
+    <a href="/" class="logo"><img src="https://cinzano.oss-cn-shanghai.aliyuncs.com/erlim/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><main class="post__wrapper"><nav class="top-nav">
+
+<a href="/resume" class="nav-link ">Resume</a>
+
+
+<a href="/portfolio.html" class="nav-link ">PORTFOLIO</a>
+
+
+<a href="/about.html" class="nav-link ">关于</a>
+
+
+<a href="/archive.html" class="nav-link ">归档</a>
+
+
+<a href="/lab.html" class="nav-link ">实验室</a>
+
+
+</nav><div class="post__top_navs clearfix">
+    <nav class="post__archive_path"><a href="/blog/" id="archiveBtn">
+        <div class="post__archive_icon">
+          <svg width="40" height="40">
+            <circle class="circle-progress" r="18" cy="20" cx="20"  stroke-linejoin="round" stroke-linecap="round" />
+          </svg>
+          <span class="post__archive_icon"></span>
+        </div>
+        目录
+      </a>
+    </nav>
+  </div>
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">博客评论系统</h1>
+      <div class="post__meta">
+        <time>2019-07-21 17:23</time>
+      </div>
+    </header>
+    <div class="post__content content">
+      <p>我目前接触过的静态博客平台大部分主题都会有评论系统，即使没有，也可以自己按意愿添加，这种教程网上有很多。最终该博客我改成用valine，一想到后面几天会发生的事，我又改成了gittalk。不得不说还是valine好一点，只需一个邮箱就能对话，而gittalk还需要GitHub账号，然而不是每个人都玩GitHub。下面简要记录一下这两种评论系统我的配置过程。</p>
+
+<h2 id="valine">valine</h2>
+<p>valine需要用到LeanCloud网站，去该网站注册一个账号。创建应用，计价方式选择免费的开发版，设置好会得到你所创建应用的 client 和 key，这两个东西后面要用到。然后在安全中心绑定自己的网站域名，到了这里，LeanCloud的设置基本就结束了，下面为博客配置valine。</p>
+
+<p>valine的配置视不同平台而定，如果你已经熟悉了某平台的设计布局，自然就会配置的，下面以本站主题<code class="highlighter-rouge">Persephone</code>为例，本站由jekyll驱动。</p>
+
+<p>在<code class="highlighter-rouge">_include/comments/</code>目录下新建一个“valine.html”，添加如下代码：</p>
+
+<pre><code class="language-HTML">{% if site.valine_comment.enable %}
+&lt;div id="vcomments"&gt;&lt;/div&gt;
+&lt;script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"&gt;&lt;/script&gt;
+&lt;script src='//unpkg.com/valine/dist/Valine.min.js'&gt;&lt;/script&gt;
+&lt;script&gt;
+    new Valine({
+        el: '#vcomments',
+        app_id: '{{ site.valine_comment.leancloud_appid }}',   //这里变量的取值在网站配置文件里_config.yml
+        app_key: '{{ site.valine_comment.leancloud_appkey }}', //这里变量的取值在网站配置文件里_config.yml
+        placeholder:'{{ site.valine_comment.placeholder }}'    //这里变量的取值在网站配置文件里_config.yml
+    });&lt;/script&gt;
+{% endif %}
+</code></pre>
+
+<p>上面代码中用了if语句判断，显然还要在站点配置文件<code class="highlighter-rouge">_config.yml</code>新添“valine_comment”属性，代码如下：</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">valine_comment</span><span class="pi">:</span>
+  <span class="na">enable</span><span class="pi">:</span> <span class="no">true</span>
+<span class="c1"># app_id</span>
+  <span class="na">leancloud_appid</span><span class="pi">:</span> <span class="s">第一步获取的 id</span>
+<span class="c1"># app_key</span>
+  <span class="na">leancloud_appkey</span><span class="pi">:</span> <span class="s">第一步获取的 key</span>
+<span class="c1"># placeholde</span>
+  <span class="na">placeholder</span><span class="pi">:</span> <span class="s">“你是我一生只会遇见一次的惊喜：）"</span>
+</code></pre></div></div>
+
+<p>因为前面已经创建了valine.html，现在需要博客去调用它以使得每篇博文页面出现评论区，以我所用主题为例，原作者采用case判断，可以选择使用哪个评论系统，在<code class="highlighter-rouge">_include/comments.html</code>文件中仿照前两个选项新增一个case:valine，而新选项所执行内容就是前面写的valine.html，故此处代码写法如下：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include comment/valine.html %}
+</code></pre></div></div>
+
+<p>至此，所有设置基本搞好了，我之前在有个地方发生了一个小问题，就是valine.html中div标签中的id参数必须与下面Valine元组的el参数中#后面内容一致，而我参考的教程所给代码居然不一样，太坑了吧……</p>
+
+<h2 id="gittalk">gittalk</h2>
+<p>从名字就大概猜出该评论插件是GitHub本家的，肯定要用到GitHub。</p>
+
+<p>第一步先在你的GitHub上新建一个库，例如名为“blog-talk”，另外务必保证该库setting中issue功能是开的，默认是开启的。然后需要注册一个GitHub应用，注册入口我从GitHub页面还真没找到，好在网上的小伙伴直接分享了<a href="https://github.com/settings/applications/new">网址</a>，注册一个‘Authorized OAuth Apps’，按照说明填入自己的设置，两个URL都是填自己博客网址，设置好后就会得到两个后面有用的东西 Client ID和Client Secret。</p>
+
+<p>接下来，博客主题自带Gittalk插件的，直接在主题配置信息中填入相关信息就OK了，会用到上面那俩。如果不自带，自己配置，就需要在你希望评论框存在的页面布局文件中加入一串引用代码，但是我们一般新建一个<code class="highlighter-rouge">gittalk.html</code>，放在_includes中,然后让博文页layout文件引用它。代码如下：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://unpkg.com/gitalk/dist/gitalk.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/gitalk@latest/dist/gitalk.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"/assets/js/md5.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"gitalk-container"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+    <span class="kd">var</span> <span class="nx">gitalk</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Gitalk</span><span class="p">({</span>
+        <span class="na">clientID</span><span class="p">:</span> <span class="dl">'</span><span class="s1">复制刚才生成的clientID</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">clientSecret</span><span class="p">:</span> <span class="dl">'</span><span class="s1">复制刚才生成的clientSecret</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">repo</span><span class="p">:</span> <span class="dl">'</span><span class="s1">装载评论的GitHub库名</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">owner</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GitHub的用户名</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">admin</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Github的用户名</span><span class="dl">'</span><span class="p">],</span>
+        <span class="na">id</span><span class="p">:</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">),</span>
+    <span class="p">});</span>
+    <span class="nx">gitalk</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">gitalk-container</span><span class="dl">'</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>上面代码引用了一个<code class="highlighter-rouge">md5.min.js</code>文件，所以，在站点“/assets/js/”目录下新建一个md5.min.js，内容如下：</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">use strict</span><span class="dl">"</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">t</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">(</span><span class="mi">65535</span> <span class="o">&amp;</span> <span class="nx">n</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">65535</span> <span class="o">&amp;</span> <span class="nx">t</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nx">t</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nx">r</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="mi">65535</span> <span class="o">&amp;</span> <span class="nx">r</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">r</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">n</span> <span class="o">&lt;&lt;</span> <span class="nx">t</span> <span class="o">|</span> <span class="nx">n</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">32</span> <span class="o">-</span> <span class="nx">t</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">e</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">t</span><span class="p">(</span><span class="nx">r</span><span class="p">(</span><span class="nx">t</span><span class="p">(</span><span class="nx">t</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">n</span><span class="p">),</span> <span class="nx">t</span><span class="p">(</span><span class="nx">u</span><span class="p">,</span> <span class="nx">f</span><span class="p">)),</span> <span class="nx">c</span><span class="p">),</span> <span class="nx">o</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">o</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">e</span><span class="p">(</span><span class="nx">t</span> <span class="o">&amp;</span> <span class="nx">r</span> <span class="o">|</span> <span class="o">~</span><span class="nx">t</span> <span class="o">&amp;</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">u</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">e</span><span class="p">(</span><span class="nx">t</span> <span class="o">&amp;</span> <span class="nx">o</span> <span class="o">|</span> <span class="nx">r</span> <span class="o">&amp;</span> <span class="o">~</span><span class="nx">o</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">c</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">e</span><span class="p">(</span><span class="nx">t</span> <span class="o">^</span> <span class="nx">r</span> <span class="o">^</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">e</span><span class="p">(</span><span class="nx">r</span> <span class="o">^</span> <span class="p">(</span><span class="nx">t</span> <span class="o">|</span> <span class="o">~</span><span class="nx">o</span><span class="p">),</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">i</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">n</span><span class="p">[</span><span class="nx">r</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">|=</span> <span class="mi">128</span> <span class="o">&lt;&lt;</span> <span class="nx">r</span> <span class="o">%</span> <span class="mi">32</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="mi">14</span> <span class="o">+</span> <span class="p">(</span><span class="nx">r</span> <span class="o">+</span> <span class="mi">64</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">9</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)]</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="mi">1732584193</span><span class="p">,</span>
+            <span class="nx">g</span> <span class="o">=</span> <span class="o">-</span><span class="mi">271733879</span><span class="p">,</span>
+            <span class="nx">v</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1732584194</span><span class="p">,</span>
+            <span class="nx">m</span> <span class="o">=</span> <span class="mi">271733878</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">e</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">e</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">e</span> <span class="o">+=</span> <span class="mi">16</span><span class="p">)</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">g</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span><span class="p">],</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">680876936</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">389564586</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">606105819</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">22</span><span class="p">,</span> <span class="o">-</span><span class="mi">1044525330</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">176418897</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1200080426</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">17</span><span class="p">,</span> <span class="o">-</span><span class="mi">1473231341</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">7</span><span class="p">],</span> <span class="mi">22</span><span class="p">,</span> <span class="o">-</span><span class="mi">45705983</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1770035416</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">9</span><span class="p">],</span> <span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">1958414417</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">17</span><span class="p">,</span> <span class="o">-</span><span class="mi">42063</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">11</span><span class="p">],</span> <span class="mi">22</span><span class="p">,</span> <span class="o">-</span><span class="mi">1990404162</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">o</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">12</span><span class="p">],</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1804603682</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">13</span><span class="p">],</span> <span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">40341101</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">14</span><span class="p">],</span> <span class="mi">17</span><span class="p">,</span> <span class="o">-</span><span class="mi">1502002290</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">15</span><span class="p">],</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">1236535329</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">165796510</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">1069501632</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">11</span><span class="p">],</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">643717713</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span><span class="p">],</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">373897302</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">701558691</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">38016083</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">15</span><span class="p">],</span> <span class="mi">14</span><span class="p">,</span> <span class="o">-</span><span class="mi">660478335</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">405537848</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">9</span><span class="p">],</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">568446438</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">14</span><span class="p">],</span> <span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">1019803690</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">14</span><span class="p">,</span> <span class="o">-</span><span class="mi">187363961</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1163531501</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">u</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">13</span><span class="p">],</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1444681467</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">51403784</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">7</span><span class="p">],</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">1735328473</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">12</span><span class="p">],</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">1926607734</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">378558</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">2022574463</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">11</span><span class="p">],</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">1839030562</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">14</span><span class="p">],</span> <span class="mi">23</span><span class="p">,</span> <span class="o">-</span><span class="mi">35309556</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1530992060</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1272893353</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">7</span><span class="p">],</span> <span class="mi">16</span><span class="p">,</span> <span class="o">-</span><span class="mi">155497632</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">23</span><span class="p">,</span> <span class="o">-</span><span class="mi">1094730640</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">13</span><span class="p">],</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">681279174</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span><span class="p">],</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">358537222</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">16</span><span class="p">,</span> <span class="o">-</span><span class="mi">722521979</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">76029189</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">9</span><span class="p">],</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">640364487</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">12</span><span class="p">],</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">421815835</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">15</span><span class="p">],</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">530742520</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">23</span><span class="p">,</span> <span class="o">-</span><span class="mi">995338651</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span><span class="p">],</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">198630844</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">7</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1126891415</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">14</span><span class="p">],</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">1416354905</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">21</span><span class="p">,</span> <span class="o">-</span><span class="mi">57434055</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">12</span><span class="p">],</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1700485571</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1894986606</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">1051523</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">21</span><span class="p">,</span> <span class="o">-</span><span class="mi">2054922799</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1873313359</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">15</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">30611744</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">1560198380</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">13</span><span class="p">],</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1309151649</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">145523070</span><span class="p">),</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">11</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1120210379</span><span class="p">),</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">718787259</span><span class="p">),</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">n</span><span class="p">[</span><span class="nx">e</span> <span class="o">+</span> <span class="mi">9</span><span class="p">],</span> <span class="mi">21</span><span class="p">,</span> <span class="o">-</span><span class="mi">343485551</span><span class="p">),</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">t</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">i</span><span class="p">),</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">t</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span> <span class="nx">a</span><span class="p">),</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">t</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">d</span><span class="p">),</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">t</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nx">l</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">a</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">r</span> <span class="o">=</span> <span class="dl">""</span><span class="p">,</span>
+            <span class="nx">e</span> <span class="o">=</span> <span class="mi">32</span> <span class="o">*</span> <span class="nx">n</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">t</span> <span class="o">&lt;</span> <span class="nx">e</span><span class="p">;</span> <span class="nx">t</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">)</span> <span class="nx">r</span> <span class="o">+=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">n</span><span class="p">[</span><span class="nx">t</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">&gt;&gt;&gt;</span> <span class="nx">t</span> <span class="o">%</span> <span class="mi">32</span> <span class="o">&amp;</span> <span class="mi">255</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">r</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">d</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">r</span><span class="p">[(</span><span class="nx">n</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="k">void</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">t</span> <span class="o">&lt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">t</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">r</span><span class="p">[</span><span class="nx">t</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="nx">n</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">t</span> <span class="o">&lt;</span> <span class="nx">e</span><span class="p">;</span> <span class="nx">t</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">)</span> <span class="nx">r</span><span class="p">[</span><span class="nx">t</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">255</span> <span class="o">&amp;</span> <span class="nx">n</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">t</span> <span class="o">/</span> <span class="mi">8</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="nx">t</span> <span class="o">%</span> <span class="mi">32</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">r</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">h</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">a</span><span class="p">(</span><span class="nx">i</span><span class="p">(</span><span class="nx">d</span><span class="p">(</span><span class="nx">n</span><span class="p">),</span> <span class="mi">8</span> <span class="o">*</span> <span class="nx">n</span><span class="p">.</span><span class="nx">length</span><span class="p">))</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">l</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">d</span><span class="p">(</span><span class="nx">n</span><span class="p">),</span>
+            <span class="nx">u</span> <span class="o">=</span> <span class="p">[],</span>
+            <span class="nx">c</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">u</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="nx">c</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="k">void</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">o</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">16</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">o</span> <span class="o">=</span> <span class="nx">i</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="mi">8</span> <span class="o">*</span> <span class="nx">n</span><span class="p">.</span><span class="nx">length</span><span class="p">)),</span> <span class="nx">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">r</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="nx">r</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">u</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span> <span class="o">=</span> <span class="mi">909522486</span> <span class="o">^</span> <span class="nx">o</span><span class="p">[</span><span class="nx">r</span><span class="p">],</span> <span class="nx">c</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1549556828</span> <span class="o">^</span> <span class="nx">o</span><span class="p">[</span><span class="nx">r</span><span class="p">];</span>
+        <span class="k">return</span> <span class="nx">e</span> <span class="o">=</span> <span class="nx">i</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">d</span><span class="p">(</span><span class="nx">t</span><span class="p">)),</span> <span class="mi">512</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">*</span> <span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="p">),</span> <span class="nx">a</span><span class="p">(</span><span class="nx">i</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">e</span><span class="p">),</span> <span class="mi">640</span><span class="p">))</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">g</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">r</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">r</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">r</span><span class="p">),</span> <span class="nx">e</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2">0123456789abcdef</span><span class="dl">"</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">t</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">4</span> <span class="o">&amp;</span> <span class="mi">15</span><span class="p">)</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">0123456789abcdef</span><span class="dl">"</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">15</span> <span class="o">&amp;</span> <span class="nx">t</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">e</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">v</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">unescape</span><span class="p">(</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">n</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">m</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">h</span><span class="p">(</span><span class="nx">v</span><span class="p">(</span><span class="nx">n</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">p</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">g</span><span class="p">(</span><span class="nx">m</span><span class="p">(</span><span class="nx">n</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">s</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">l</span><span class="p">(</span><span class="nx">v</span><span class="p">(</span><span class="nx">n</span><span class="p">),</span> <span class="nx">v</span><span class="p">(</span><span class="nx">t</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">C</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">g</span><span class="p">(</span><span class="nx">s</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">A</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">t</span> <span class="p">?</span> <span class="nx">r</span> <span class="p">?</span> <span class="nx">s</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">:</span> <span class="nx">C</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">:</span> <span class="nx">r</span> <span class="p">?</span> <span class="nx">m</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">:</span> <span class="nx">p</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="dl">"</span><span class="s2">function</span><span class="dl">"</span> <span class="o">==</span> <span class="k">typeof</span> <span class="nx">define</span> <span class="o">&amp;&amp;</span> <span class="nx">define</span><span class="p">.</span><span class="nx">amd</span> <span class="p">?</span> <span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">A</span>
+    <span class="p">})</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">object</span><span class="dl">"</span> <span class="o">==</span> <span class="k">typeof</span> <span class="nx">module</span> <span class="o">&amp;&amp;</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="p">?</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">A</span> <span class="p">:</span> <span class="nx">n</span><span class="p">.</span><span class="nx">md5</span> <span class="o">=</span> <span class="nx">A</span>
+<span class="p">}(</span><span class="k">this</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>在布局文件中引用gittalk.html时一般都会用到下面这句，具体的视你的文件结构而定。</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include gitalk.html %} 
+</code></pre></div></div>
+<p>如果照着网上大多数教程，可能会有个“ <code class="highlighter-rouge">Error:Validation Failed </code> ”bug，而解决该bug的方法就是上述内容，所以本文直接用了这个方法。</p>
+
+<hr>
+<p>2019.8.4 –updated</p>
+
+<p>本博客经历了GitTalk数天又换回了valine，去除了评论框下方<code class="highlighter-rouge">powered by valine</code>，在valine.html的new列表下加入以下代码：</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    new···
+//增加以下六行代码去除 power by valine
+    var infoEle = document.querySelector('#vcomments .info');
+    if (infoEle <span class="err">&amp;&amp;</span> infoEle.childNodes <span class="err">&amp;&amp;</span> infoEle.childNodes.length &gt; 0){
+      infoEle.childNodes.forEach(function(item) {
+        item.parentNode.removeChild(item);
+      });
+    }
+</code></pre></div></div>
+
+<p>新添评论框罗小黑背景，在<code class="highlighter-rouge">/_sass/persephone/_comments.scss</code>中加入以下代码：</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">#veditor</span> <span class="p">{</span>
+    <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url(https://罗小黑-comment-bg.png)</span><span class="p">;</span>
+    <span class="nl">background-size</span><span class="p">:</span> <span class="n">contain</span><span class="p">;</span>
+    <span class="nl">background-repeat</span><span class="p">:</span> <span class="nb">no-repeat</span><span class="p">;</span>
+    <span class="nl">background-position</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="p">,</span><span class="m">255</span><span class="p">,</span><span class="m">255</span><span class="p">,</span><span class="m">0</span><span class="p">);</span>
+    <span class="nl">resize</span><span class="p">:</span> <span class="n">vertical</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>更换了更为强大的<code class="highlighter-rouge">valine-admin</code>，详情请参考以下链接：</p>
+
+<p><a href="https://valine.js.org/">valine官方文档</a></p>
+
+<p><a href="https://deserts.io/valine-admin-document/">valine-admin配置手册</a></p>
+
+<p>评论框样式也更换了该作者的valine.min.js，的确更酷炫了，可惜的是小黑不能用了。</p>
+
+<!--
+结语：valine需要依赖LeanCloud，而从上个月25号开始，没有实名认证的用户在一个月缓冲器后，也就是本月25号以后，将不能再使用他家服务。看到这个消息，我吓得立刻跑去认证，但是这个网站认证要身份证也就算了，还要用户提供手持身份证照，这就很过分了。
+
+老实说，在我看来，除了国家机关，这些私营企业都不该要求提供用户身份信息，唉，谁让咱用户是弱势群体呢，支付宝向我要，我给了，七牛云向我要，我也给了，不给没有东西用啊~
+
+但是，人家好歹也只要身份证正反面，而这个家伙居然还要让人用那种姿势摆拍，让人不由得想起某贷……
+
+对此，一开始我是拒绝的，时至今日，依然拒绝，于是乎马上找替代品，然后，本站就换成了GitTalk，所以之前的评论就都没了，虽然也没几条。。。 -->
+
+    </div>
+  </article><div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cinzano.oss-cn-shanghai.aliyuncs.com/js/valine-admin.min.js'></script>
+<script>
+    new Valine({
+        // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛)
+        av: AV, 
+        el: '#vcomments',
+        emoticon_url: 'https://cloud.panjunwen.com/alu',
+        emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+        app_id: 'V0c7wvS5oOSNRtQQTYgvI0Fr-MdYXbMMI',   //这里变量的取值在网站配置文件里_config.yml
+        app_key: 'J5DrVIaWO5DzViOkEP7DHNDw', //这里变量的取值在网站配置文件里_config.yml
+        placeholder:'你是我一生只会遇见一次的惊喜 ：）' ,   //这里变量的取值在网站配置文件里_config.yml
+        notify: false, 
+        verify: false
+    });
+    //增加以下六行代码去除 power by valine
+    var infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+      infoEle.childNodes.forEach(function(item) {
+        item.parentNode.removeChild(item);
+      });
+    }
+</script><script>
+//暂时储存文章中的内容
+var div = $('.post__content.content');
+//暂时储存目录的内容
+var div__header=$('.post__header')
+function password() {
+  if(''){
+  //将标题删除 
+    div__header.remove();
+  //将文章内容删除
+    div.remove();
+  //将文章删除后，向原来文章的地方添加，应该出现的提示用户输入密码的样式
+  //下面这里的第一个用textarea是因为如果在手机端的时候只能显示一部分文字，
+  //只是拓展:input里面的字只能显示一行，不会自动换行，目前上网搜索没有发现好的办法，所以用了textarea，右下角的小三角通过resize:none 去掉。
+   $('.post__top_navs.clearfix').after('<textarea class="description" value="Please input password and press enter:" style="border: none;display: block;' +'width: 60%;margin: 0 auto;text-align: center;outline: none;margin-bottom: 50px;resize:none;color:#B0C4DE ">Please input password and press enter:</textarea>' +
+      '<div class="qiang" style="height: 100px;width: 60%;margin:0 auto">' +
+      '<input class="password"  type="text" value="" style="border: none;display: block;border-bottom: 1px solid #ccc;' +
+      'margin: 0 auto;outline: none;width:95%"/>' +
+      '</div>')
+      //绑定点击事件，如果是点击的.password 这个div就改变样式，如果是document中除了div之外的其他任何元素，就变回原来的样式。
+    document.onclick = function (event) {
+      var e = event || window.event;
+      var elem = e.srcElement || e.target;
+
+      while (elem) {
+        if (elem != document) {
+          if (elem.className == "password") {
+            $(".password").animate({paddingTop:"30px",width:"100%",borderWidth:"2px"},300)
+            return;
+          }
+          elem = elem.parentNode;
+        } else {
+          $(".password").animate({paddingTop:"0px",width:"95%",borderWidth:"1px"},300)
+          return;
+        }
+      }
+    }
+    //绑定enter键按下后离开的事件
+    $(document).keyup(function(event){
+      if(event.keyCode ==13&&$('.password').length>0){
+        //console.log($('.password').val())
+        //console.log('')
+        if ($('.password').val() == '') {
+        //恢复标题
+          div__header.appendTo($(".post"))
+        //恢复文章内容
+          div.appendTo($('.post'))
+        //删除本页面的输入密码组件
+          $(".description").remove();
+          $(".qiang").remove();
+          $(".password").remove();  
+        }else {
+          alert("Sorry, the password is wrong.")
+        }
+      }
+      //将document的keyup移除，防止在pjax的情况下会重复绑定事件
+    });
+  }
+}
+password();
+</script></main>
+
+<!-- 下面这段使得只有博客页的代码高亮，book页不会，现已改为都支持 -->
+<!--<script>hljs.initHighlightingOnLoad();</script>--><footer class="site-footer">
+  © 2019<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+
+  </body>
+</html>

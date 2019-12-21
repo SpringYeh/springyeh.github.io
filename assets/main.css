@@ -664,6 +664,10 @@ a.nav-link {
   color: var(--gray);
   flex-shrink: 0; }
 
+.iconfont {
+  font-size: 18px;
+  margin: 0 5px; }
+
 .icon__list {
   text-align: center;
   margin: 0 0 1.5rem; }

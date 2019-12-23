@@ -69,7 +69,8 @@
   -ms-transform: translateY(-3px);
   -o-transform: translateY(-3px);
   transform: translateY(-3px);
-  box-shadow: 0 2px 15px 0 rgba(249,246,246,0.1), 0 3px 10px -2px rgba(247,244,244,0.1), 0 1px 10px 0 rgba(251,248,248,0.1);
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
+  /*box-shadow: 0 2px 15px 0 rgba(249,246,246,0.1), 0 3px 10px -2px rgba(247,244,244,0.1), 0 1px 10px 0 rgba(251,248,248,0.1);*/
   border-radius: 6px;
 }
 .per-link-page .per-links .per-links-item::before {

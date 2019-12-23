@@ -15,10 +15,11 @@
   <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
   <meta name="description" content="一叶知秋|日常|学而时习之|读万卷书，行万里路|少女与猫|诗"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
 <link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
-<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<link rel="stylesheet" href="/assets/css/custom.css" />
+<link rel="stylesheet" href="/assets/css/default.css" name="darkmode" />
 
-<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><link rel="stylesheet" href="/assets/css/custom.css" />
-<!-- 页面点击小红心 -->
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 页面点击小红心 -->
 <script src="/assets/js/love.js"></script>
 
 <!-- 页面点击爆炸效果
@@ -26,7 +27,46 @@
 <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
 <script type="text/javascript" src="/assets/js/fireworks.js"></script>
 -->
+<script>
+	(function(){
+		var t = new Date();
+		console.log('当前小时：' + t.getHours());
+	    var demo = document.getElementsByName("darkmode")[0];
+	    if(t.getHours() >= 18 || t.getHours() <= 6){
+	    	demo.href = "/assets/css/dark.css";
+	    	console.log('夜间模式开启');
+	    }else{
+	    	demo.href = "/assets/css/default.css";
+	    	console.log('夜间模式关闭');
+	    }
+	})();
+</script>
+<!--   <script>
+  	(function(){
+	    var demo = document.getElementsByName("darkmode")[0];
+	    if(document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === ''){
+	        if(new Date().getHours() > 19 || new Date().getHours() < 6){
+	        	console.log(demo);
+	            //demo.href = "/assets/css/dark.css";
+	            document.cookie = "night=1;path=/";
+	            console.log('夜间模式开启');
+	        }else{
+	            //document.body.classList.remove('night');//
+	            document.cookie = "night=0;path=/";
+	            console.log('夜间模式关闭');
+	        }
+	    }else{
+	        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+	        if(night == '0'){
+	            //document.body.classList.remove('night');//
+	        }else if(night == '1'){
+	            demo.innerHTML += '<link rel="stylesheet" href="/assets/css/dark.css">';
+	        }
+	    }
+	})();
+  </script> -->
 </head>
+
 <body class="body-404">
     <div class="error-container">
   <h1 class="error-title">404</h1>

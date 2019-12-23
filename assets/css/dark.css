@@ -1,0 +1,89 @@
+body, html {
+    /*font-family: "PingFang SC","HiraMinProN-W6";*/
+    background-color: #343434;
+    color: #fff; /* #D0C8BE  #8E92A5 */
+}
+a {
+    color: #8E92A5;
+}
+.archive__item:hover {
+    border-color: var(--gray);
+}
+.archive__header {
+    border-right: 1px solid var(--gray);
+}
+.archive__header .archive__header_intro {
+    color: var(--gray);
+}
+
+.archive__link {
+    color: #8E92A5;
+}
+.post__list_item.fade a, .post__list_item.fade .archive__time {
+    color: var(--gray);
+}
+.post__list_item .archive__time {
+    color: var(--light-gray);
+}
+.slide__img_placehold {
+  background-color: #343434;
+}
+.slide__img img {
+    filter: brightness(50%);
+}
+.book__img {
+    filter: brightness(50%);
+}
+.content img {
+    filter: brightness(50%);
+}
+img.avatar {
+    filter: brightness(90%);
+}
+
+.slide__control.current:after {
+     background-color: var(--gray); 
+}
+
+.post__title, .book__title, .content {
+    color: #c0c0c0;
+}
+
+.icon__list a:hover .icon__fill {
+  fill: var(--grayer);
+}
+
+.icon__list a:hover .icon__stroke {
+  stroke: var(--grayer);
+}
+.content a {
+    color: var(--gray);
+}
+
+.per-link-page .per-links .per-links-item:hover {
+    box-shadow: 0 2px 15px 0 rgba(249,246,246,0.1), 0 3px 10px -2px rgba(247,244,244,0.1), 0 1px 10px 0 rgba(251,248,248,0.1);
+}
+.userItem:hover .userItem--inner {
+    /*box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);*/
+    box-shadow: 0 2px 15px 0 rgba(249,246,246,0.1), 0 3px 10px -2px rgba(247,244,244,0.1), 0 1px 10px 0 rgba(251,248,248,0.1);
+}
+
+.book-summary {
+    color: #c0c0c0;
+    background: #343434;
+}
+/* jekyll-book目录 滚动条颜色 */
+.book-summary::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #7d7d7d;
+}
+.book-summary ul.summary li a,
+.book-summary ul.summary li span {
+  color: var(--gray);
+}
+.book-summary ul.summary li.active > a {
+  color: #D0C8BE;
+}
+
+
+

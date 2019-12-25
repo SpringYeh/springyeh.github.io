@@ -85,5 +85,8 @@ img.avatar {
   color: #D0C8BE;
 }
 
-
+/* about 页*/
+p.saying {
+  color: #cde8d0;font-family: 'HiraMinProN-W6';font-size: 18px;margin-bottom: 0;
+}
 

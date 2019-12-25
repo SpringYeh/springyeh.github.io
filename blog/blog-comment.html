@@ -2,7 +2,7 @@
 <html lang="zh"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content=""><title>博客评论系统 | 一叶知秋</title><link rel="shortcut icon" href="https://cinzano.oss-cn-shanghai.aliyuncs.com/images/ye.png" />
+  <meta name="author" content=""><title>为博客添加评论系统 | 一叶知秋</title><link rel="shortcut icon" href="https://cinzano.oss-cn-shanghai.aliyuncs.com/images/ye.png" />
 <script>
   var _hmt = _hmt || [];
   (function() {
@@ -113,7 +113,7 @@
   </div>
   <article class="post">
     <header class="post__header">
-      <h1 class="post__title">博客评论系统</h1>
+      <h1 class="post__title">为博客添加评论系统</h1>
       <div class="post__meta">
         <time>2019-07-21 17:23</time>
       </div>
@@ -124,7 +124,7 @@
 <h2 id="valine">valine</h2>
 <p>valine需要用到LeanCloud网站，去该网站注册一个账号。创建应用，计价方式选择免费的开发版，设置好会得到你所创建应用的 client 和 key，这两个东西后面要用到。然后在安全中心绑定自己的网站域名，到了这里，LeanCloud的设置基本就结束了，下面为博客配置valine。</p>
 
-<p>valine的配置视不同平台而定，如果你已经熟悉了某平台的设计布局，自然就会配置的，下面以本站主题<code class="highlighter-rouge">Persephone</code>为例，本站由jekyll驱动。</p>
+<p>valine的配置视不同平台而定，如果你已经熟悉了你的博客的设计布局，自然就会配置了，下面以本站主题<code class="highlighter-rouge">Persephone</code>为例，本站由jekyll驱动。</p>
 
 <p>在<code class="highlighter-rouge">_include/comments/</code>目录下新建一个“valine.html”，添加如下代码：</p>
 
@@ -138,7 +138,8 @@
         app_id: '{{ site.valine_comment.leancloud_appid }}',   //这里变量的取值在网站配置文件里_config.yml
         app_key: '{{ site.valine_comment.leancloud_appkey }}', //这里变量的取值在网站配置文件里_config.yml
         placeholder:'{{ site.valine_comment.placeholder }}'    //这里变量的取值在网站配置文件里_config.yml
-    });&lt;/script&gt;
+    });
+&lt;/script&gt;
 {% endif %}
 </code></pre>
 
@@ -156,7 +157,16 @@
 
 <p>因为前面已经创建了valine.html，现在需要博客去调用它以使得每篇博文页面出现评论区，以我所用主题为例，原作者采用case判断，可以选择使用哪个评论系统，在<code class="highlighter-rouge">_include/comments.html</code>文件中仿照前两个选项新增一个case:valine，而新选项所执行内容就是前面写的valine.html，故此处代码写法如下：</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include comment/valine.html %}
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{%- case site.comment.provider -%}
+{%- when 'static' -%}
+{% include comment/static/comments.html %}
+{%- when 'disqus' -%}
+{% include comment/disqus.html %}
+{%- when 'valine' -%}
+{% include comment/valine.html %}
+{%- when 'gittalk' -%}
+{% include comment/gittalk.html %}
+{%- endcase -%}
 </code></pre></div></div>
 
 <p>至此，所有设置基本搞好了，我之前在有个地方发生了一个小问题，就是valine.html中div标签中的id参数必须与下面Valine元组的el参数中#后面内容一致，而我参考的教程所给代码居然不一样，太坑了吧……</p>
@@ -164,15 +174,15 @@
 <h2 id="gittalk">gittalk</h2>
 <p>从名字就大概猜出该评论插件是GitHub本家的，肯定要用到GitHub。</p>
 
-<p>第一步先在你的GitHub上新建一个库，例如名为“blog-talk”，另外务必保证该库setting中issue功能是开的，默认是开启的。然后需要注册一个GitHub应用，注册入口我从GitHub页面还真没找到，好在网上的小伙伴直接分享了<a href="https://github.com/settings/applications/new">网址</a>，注册一个‘Authorized OAuth Apps’，按照说明填入自己的设置，两个URL都是填自己博客网址，设置好后就会得到两个后面有用的东西 Client ID和Client Secret。</p>
+<p>第一步先在你的GitHub上新建一个库，例如名为“blog-talk”，另外务必保证该库setting中issue功能是开的，默认是开启的。然后需要注册一个GitHub应用，注册入口我从GitHub页面还真没找到😅，好在网上的小伙伴直接分享了<a href="https://github.com/settings/applications/new">入口网址</a>，注册一个‘Authorized OAuth Apps’，按照说明填入自己的设置，两个URL都是填自己博客网址，设置好后就会得到两个后面有用的东西 Client ID和Client Secret。</p>
 
-<p>接下来，博客主题自带Gittalk插件的，直接在主题配置信息中填入相关信息就OK了，会用到上面那俩。如果不自带，自己配置，就需要在你希望评论框存在的页面布局文件中加入一串引用代码，但是我们一般新建一个<code class="highlighter-rouge">gittalk.html</code>，放在_includes中,然后让博文页layout文件引用它。代码如下：</p>
+<p>接下来，博客主题自带Gittalk插件的，直接在主题配置信息中填入相关信息就OK了，会用到上面那俩。如果不自带，自己配置，就需要在你希望评论框存在的页面文件中加入一串引用代码，但是我们一般新建一个<code class="highlighter-rouge">gittalk.html</code>，放在_includes中,然后让页面文件引用它。代码如下：</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://unpkg.com/gitalk/dist/gitalk.css"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/gitalk@latest/dist/gitalk.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"/assets/js/md5.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"gitalk-container"</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script&gt;</span>
     <span class="kd">var</span> <span class="nx">gitalk</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Gitalk</span><span class="p">({</span>
         <span class="na">clientID</span><span class="p">:</span> <span class="dl">'</span><span class="s1">复制刚才生成的clientID</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">clientSecret</span><span class="p">:</span> <span class="dl">'</span><span class="s1">复制刚才生成的clientSecret</span><span class="dl">'</span><span class="p">,</span>
@@ -276,7 +286,7 @@
 <span class="p">}(</span><span class="k">this</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>在布局文件中引用gittalk.html时一般都会用到下面这句，具体的视你的文件结构而定。</p>
+<p>在页面文件中引用gittalk.html时一般都是用到下面这种语法，具体的视你的文件结构而定。</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% include gitalk.html %} 
 </code></pre></div></div>
 <p>如果照着网上大多数教程，可能会有个“ <code class="highlighter-rouge">Error:Validation Failed </code> ”bug，而解决该bug的方法就是上述内容，所以本文直接用了这个方法。</p>
@@ -284,8 +294,8 @@
 <hr>
 <p>2019.8.4 –updated</p>
 
-<p>本博客经历了GitTalk数天又换回了valine，去除了评论框下方<code class="highlighter-rouge">powered by valine</code>，在valine.html的new列表下加入以下代码：</p>
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    new···
+<p>本博客经历了GitTalk数天又换回了valine，去除了评论框下方<code class="highlighter-rouge">powered by valine</code>，在valine.html的新建Valine对象语句下面加入以下代码：</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    new Valine(···);
 //增加以下六行代码去除 power by valine
     var infoEle = document.querySelector('#vcomments .info');
     if (infoEle <span class="err">&amp;&amp;</span> infoEle.childNodes <span class="err">&amp;&amp;</span> infoEle.childNodes.length &gt; 0){
@@ -312,7 +322,7 @@
 
 <p><a href="https://deserts.io/valine-admin-document/">valine-admin配置手册</a></p>
 
-<p>评论框样式也更换了该作者的valine.min.js，的确更酷炫了，可惜的是小黑不能用了。</p>
+<p>评论框样式也更换了该作者的valine.min.js，的确更酷炫了，可惜的是小黑不能用了，因为我不会改。</p>
 
 <!--
 结语：valine需要依赖LeanCloud，而从上个月25号开始，没有实名认证的用户在一个月缓冲器后，也就是本月25号以后，将不能再使用他家服务。看到这个消息，我吓得立刻跑去认证，但是这个网站认证要身份证也就算了，还要用户提供手持身份证照，这就很过分了。
@@ -321,7 +331,7 @@
 
 但是，人家好歹也只要身份证正反面，而这个家伙居然还要让人用那种姿势摆拍，让人不由得想起某贷……
 
-对此，一开始我是拒绝的，时至今日，依然拒绝，于是乎马上找替代品，然后，本站就换成了GitTalk，所以之前的评论就都没了，虽然也没几条。。。 -->
+对此，一开始我是拒绝的，时至今日，依然拒绝，于是乎马上找替代品，然后，本站就换成了GitTalk，所以之前的评论就都没了，虽然本来也没几条。。。 -->
 
     </div>
   </article><div id="vcomments"></div>

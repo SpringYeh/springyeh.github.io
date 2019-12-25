@@ -89,53 +89,7 @@
           </svg>
           <span class="book__icon_arrow"></span>
         </div>
-      </a></div><script>
-//暂时储存文章中的内容
-var div = $('.book__more');
-
-function password() {
-  if(''){
-    div.remove();
-   $('.book__desc').after('<textarea class="description" value="Please input password and press enter:" style="border: none;display: block;' +'width: 60%;margin: 0 auto;text-align: center;outline: none;margin-top: 40px;margin-bottom: 10px;resize:none ;color:#B0C4DE ">Please input password and press enter:</textarea>' +
-      '<div class="qiang" style="height: 50px;width: 60%;margin:0 auto">' +
-      '<input class="password"  type="text" value="" style="border: none;display: block;border-bottom: 1px solid #ccc;' +
-      'margin: 0 auto;outline: none;width:95%"/>' +
-      '</div>')
-    document.onclick = function (event) {
-      var e = event || window.event;
-      var elem = e.srcElement || e.target;
-
-      while (elem) {
-        if (elem != document) {
-          if (elem.className == "password") {
-            $(".password").animate({paddingTop:"30px",width:"100%",borderWidth:"2px"},300)
-            return;
-          }
-          elem = elem.parentNode;
-        } else {
-          $(".password").animate({paddingTop:"0px",width:"95%",borderWidth:"1px"},300)
-          return;
-        }
-      }
-    }
-    $(document).keyup(function(event){
-      if(event.keyCode ==13&&$('.password').length>0){
-        //console.log($('.password').val())
-        //console.log('')
-        if ($('.password').val() == '') {
-          div.appendTo($('.book__desc'))
-          $(".description").remove();
-          $(".qiang").remove();
-          $(".password").remove();  
-        }else {
-          alert("Sorry,the password is wrong")
-        }
-      }
-    });
-  }
-}
-password();
-</script><footer class="site-footer">
+      </a></div><footer class="site-footer">
   © 2019<a href="/">一叶知秋</a>. All rights reserved.
 </footer>
 </div>

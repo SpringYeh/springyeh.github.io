@@ -20,12 +20,12 @@
 
 <script src="/assets/js/main.js?v=0.1.7" defer></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
-	<!--<link rel="stylesheet" href="/assets/css/tomorrow.css" />
+	<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
 	<script src="/assets/js/highlight.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script> -->
+	<script>hljs.initHighlightingOnLoad();</script> 
 	<!-- prism插件代码风格 -->
-	<link rel="stylesheet" href="/assets/css/prism.css" />
-	<script src="/assets/js/prism.js"></script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<!-- 	<link rel="stylesheet" href="/assets/css/prism.css" />
+	<script src="/assets/js/prism.js"></script> --><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 	<script type="text/x-mathjax-config">
 	    MathJax.Hub.Config({
 	      tex2jax: {
@@ -35,17 +35,16 @@
 	</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script><!-- 页面点击小红心 -->
 <script src="/assets/js/love.js"></script>
 
-<!-- 页面点击爆炸效果
-<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-<script type="text/javascript" src="/assets/js/fireworks.js"></script>
--->
-<script>
+
+</head>
+
+<body class="body-chapter">
+  	<script>
 	(function(){
 		var t = new Date();
 		console.log('当前小时：' + t.getHours());
 	    var demo = document.getElementsByName("darkmode")[0];
-	    if(t.getHours() >= 18 || t.getHours() <= 6){
+	    if(t.getHours() >= 19 || t.getHours() <= 6){
 	    	demo.href = "/assets/css/dark.css";
 	    	console.log('夜间模式开启');
 	    }else{
@@ -54,33 +53,6 @@
 	    }
 	})();
 </script>
-<!--   <script>
-  	(function(){
-	    var demo = document.getElementsByName("darkmode")[0];
-	    if(document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === ''){
-	        if(new Date().getHours() > 19 || new Date().getHours() < 6){
-	        	console.log(demo);
-	            //demo.href = "/assets/css/dark.css";
-	            document.cookie = "night=1;path=/";
-	            console.log('夜间模式开启');
-	        }else{
-	            //document.body.classList.remove('night');//
-	            document.cookie = "night=0;path=/";
-	            console.log('夜间模式关闭');
-	        }
-	    }else{
-	        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-	        if(night == '0'){
-	            //document.body.classList.remove('night');//
-	        }else if(night == '1'){
-	            demo.innerHTML += '<link rel="stylesheet" href="/assets/css/dark.css">';
-	        }
-	    }
-	})();
-  </script> -->
-</head>
-
-<body class="body-chapter">
     <div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
   <nav role="navigation">
     <ul class="summary">
@@ -93,7 +65,7 @@
   </nav>
 </div>
 <div class="book__body">
-    <div class="body__inner"><a href="/" class="logo"><img src="https://cinzano.oss-cn-shanghai.aliyuncs.com/erlim/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
 </a><a href="/archive.html" class="sidebar__toggler">
   <span class="sidebar__toggler_top"></span>
   <span class="sidebar__toggler_middle"></span>

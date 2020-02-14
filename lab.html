@@ -22,17 +22,16 @@
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 页面点击小红心 -->
 <script src="/assets/js/love.js"></script>
 
-<!-- 页面点击爆炸效果
-<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-<script type="text/javascript" src="/assets/js/fireworks.js"></script>
--->
-<script>
+
+</head>
+
+<body class="body-lab">
+  	<script>
 	(function(){
 		var t = new Date();
 		console.log('当前小时：' + t.getHours());
 	    var demo = document.getElementsByName("darkmode")[0];
-	    if(t.getHours() >= 18 || t.getHours() <= 6){
+	    if(t.getHours() >= 19 || t.getHours() <= 6){
 	    	demo.href = "/assets/css/dark.css";
 	    	console.log('夜间模式开启');
 	    }else{
@@ -41,34 +40,7 @@
 	    }
 	})();
 </script>
-<!--   <script>
-  	(function(){
-	    var demo = document.getElementsByName("darkmode")[0];
-	    if(document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === ''){
-	        if(new Date().getHours() > 19 || new Date().getHours() < 6){
-	        	console.log(demo);
-	            //demo.href = "/assets/css/dark.css";
-	            document.cookie = "night=1;path=/";
-	            console.log('夜间模式开启');
-	        }else{
-	            //document.body.classList.remove('night');//
-	            document.cookie = "night=0;path=/";
-	            console.log('夜间模式关闭');
-	        }
-	    }else{
-	        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-	        if(night == '0'){
-	            //document.body.classList.remove('night');//
-	        }else if(night == '1'){
-	            demo.innerHTML += '<link rel="stylesheet" href="/assets/css/dark.css">';
-	        }
-	    }
-	})();
-  </script> -->
-</head>
-
-<body class="body-lab">
-    <a href="/" class="logo"><img src="https://cinzano.oss-cn-shanghai.aliyuncs.com/erlim/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+    <a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
 </a><main class="archive">
   <div class="archive__header">
     <h1>
@@ -98,20 +70,32 @@
           </a>
         </li>
         <li class="archive__item">
-					<a href="https://cinzano.coding.me/che-elem" class="archive__link clearfix">
+					<a href="https://cinzano.gitee.io/che-elem" class="archive__link clearfix">
             <span class="archive__ye__laborder">叁 |</span>
 						<span class="archive__title">元素周期表</span>
 					</a>
 				</li>
         <li class="archive__item">
-          <a href="https://cinzano.coding.me/BaiduHelpYou" class="archive__link clearfix">
+          <a href="https://cinzano.gitee.io/BaiduHelpYou" class="archive__link clearfix">
             <span class="archive__ye__laborder">肆 |</span>
             <span class="archive__title">让我帮你百度一下</span>
           </a>
         </li>
         <li class="archive__item">
-          <a href="https://cinzano.gitee.io/web-2048/" class="archive__link clearfix">
+          <a href="https://springyeh.github.io/resume" class="archive__link clearfix">
             <span class="archive__ye__laborder">伍 |</span>
+            <span class="archive__title">RESUME</span>
+          </a>
+        </li>
+        <li class="archive__item">
+          <a href="https://cinzano.gitee.io/portfolio" class="archive__link clearfix">
+            <span class="archive__ye__laborder">陆 |</span>
+            <span class="archive__title">PORTFOLIO</span>
+          </a>
+        </li>
+        <li class="archive__item">
+          <a href="https://cinzano.gitee.io/web-2048/" class="archive__link clearfix">
+            <span class="archive__ye__laborder">柒 |</span>
             <span class="archive__title">数字方块2048小游戏</span>
           </a>
         </li>

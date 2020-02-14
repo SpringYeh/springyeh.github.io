@@ -87,6 +87,95 @@ img.avatar {
 
 /* about 页*/
 p.saying {
-  color: #cde8d0;font-family: 'HiraMinProN-W6';font-size: 18px;margin-bottom: 0;
+  color: #cde8d0;font-family: Kai,'HiraMinProN-W6';font-size: 18px;margin-bottom: 0;
 }
+
+
+
+.content code.highlighter-rouge {
+    color: rgba(0,80,152,0.988);
+    background: rgba(135,218,255,0.722);
+    border-radius: 4px;
+    box-shadow: 0 0 2px #87daff;
+    margin: 0 5px;
+}
+
+.content pre {
+    position: relative;
+    background-color: #282c34 !important;
+    border-radius: 8px;
+    max-width: 100%;
+    padding: .6rem 1rem .9rem;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    overflow: auto;
+}
+.content pre>code {
+    font-size: .9em;
+    /*font-family: Courier;*/
+    background-color: transparent;
+    color: #fff;
+}
+.content code.hljs {
+  overflow-x: initial;
+}
+.content del code.highlighter-rouge {
+  background:transparent;
+  color: #fff;
+  box-shadow: none
+}
+
+
+
+
+.valine .info .col {
+    background: #343434 !important;
+    color: #666;
+}
+.valine .info .col span {
+    color: #666;
+}
+.valine .vinputs-area .textarea-wrapper textarea,
+.valine .auth-section input{
+  color: #B1B1C1 !important;
+}
+button.vsubmit {
+  outline: none;
+  border-radius: 4px !important;
+  border: none!important;
+  background-color: #151516 !important;
+}
+button.vsubmit:hover {
+  background-color: #448EF6 !important;
+}
+.valine * {
+  background-color: #343434 !important;
+}
+.valine .vlist a.vname {
+  color: #fff !important;
+}
+.valine .vlist .vcomment p {
+  color: #B1B1C1 !important;
+}
+.valine .vlist .vcard .vcomment-body:hover .vat {
+  background-color: #343434!important;
+}
+.valine .vlist .vat:hover {
+  color: #448ef6!important; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

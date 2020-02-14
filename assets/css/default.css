@@ -6,3 +6,37 @@ body, html {
 .post__title, .book__title, .content {
     /*color: #606975;*/
 }
+
+.content code.highlighter-rouge {
+    color: rgba(0,80,152,0.988);
+    background: rgba(135,218,255,0.722);
+    border-radius: 4px;
+    box-shadow: 0 0 2px #87daff;
+    margin: 0 5px;
+}
+
+.content pre {
+    position: relative;
+    background-color: #282c34 !important;
+    border-radius: 8px;
+    max-width: 100%;
+    padding: .6rem 1rem .9rem;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    overflow: auto;
+}
+.content pre>code {
+    font-size: .9em;
+/*     font-family: Courier; */
+    background-color: transparent;
+    color: #fff;
+}
+.content code.hljs {
+  overflow-x: initial;
+}
+.content del code.highlighter-rouge {
+  background:transparent;
+/*   color: #fff; */
+  box-shadow: none;
+}

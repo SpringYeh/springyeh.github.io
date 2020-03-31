@@ -2,7 +2,7 @@
 <html lang="zh"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content=""><title>jekyll折腾记 | 一叶知秋</title><link rel="shortcut icon" href="https://cinzano.oss-cn-shanghai.aliyuncs.com/images/ye.png" />
+  <meta name="author" content=""><title>论马桶和蹲坑 | 一叶知秋</title><link rel="shortcut icon" href="https://cinzano.oss-cn-shanghai.aliyuncs.com/images/ye.png" />
 <script>
   var _hmt = _hmt || [];
   (function() {
@@ -64,31 +64,53 @@
   </div>
   <article class="post">
     <header class="post__header">
-      <h1 class="post__title">jekyll折腾记</h1>
+      <h1 class="post__title">论马桶和蹲坑</h1>
       <div class="post__meta">
-        <time>2019-07-19 22:41</time>
+        <time>2019-08-23 10:37</time>
       </div>
     </header>
     <div class="post__content content">
-      <p>这十几天，把正业都荒废了，一直在漫无边际没头没脑地“搞博客”。我一直钟情的静态博客平台是HEXO，而就在前几天（具体忘了是什么原因）让我决定去尝试一下jekyll。</p>
+      <p>在贴吧刷到一个水帖，但话题值得探讨一番。</p>
 
-<p>按照官方文档，终于把环境配置好了，虽然过程中还是出了些问题，按着文档来也不让你一帆风顺，见怪不怪了。又尝试了官网上大量自认为好看的主题，一番下来后，jekyll给我的感觉就是 很出乎意料，很不方便，与HEXO相去甚远，加之那些官网主题也并没有多么惊艳，于是就放弃了使用jekyll来折腾。</p>
+<blockquote>
+  <p>原贴：相处五年的女盆友，马上就要结婚了，最后装修因为卫生间装马桶还是蹲坑跟我闹别扭😭要跟我分手，咋办啊？~她坚持要装马桶。我想装蹲坑式，因为我大小村里长大，坐马桶使不上劲😭各位老哥你们说咋办啊？</p>
+</blockquote>
 
-<p>18号晚上，那天我又在尝试搭WordPress博客，我正在某主题网站看WP主题，机缘巧合之下，让我看到了<a href="https://erl.im">叶夕青兮</a>，有意思的是该博客主题<a href="https://github.com/erlzhang/jekyll-theme-persephone">persephone</a>并非是WP主题，而是基于jekyll平台，而这个网站设计得实在是太惊艳了，当时我就心动了，爱了爱了！折腾jekyll的动力立刻又有了。</p>
+<p>看到这个帖我气得浑身发抖，大热天的全身冷汗，手脚冰凉，地狱空荡荡、魔鬼在人间，这个社会还能不能好了，男生到底要怎么活着你们才满意？眼泪不争气地流了下来，这个贴吧到处充斥着对男生的压迫，我们男生何时才能真正地站起来！👊👊</p>
 
-<p>因为上次已经了解过了，且环境也配置好了，这一次把主题源代码文件撸下来以后只要几个命令就好了：</p>
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-bundle exec jekyll serve
-</code></pre></div></div>
-<p>当我把一切调好，把它部署到免费静态博客托管平台(GitHub、Coding、码云)上时，本地localhost运行良好而到了远端就不行了。</p>
+<p>一般这种情况，我们都是建议分手，这种渣女盆友，不分留着过年啊(づ｡◕‿‿◕｡)づ</p>
 
-<p>一开始是网站根目录设置不对。GitHub上如果项目名称不是<code class="highlighter-rouge">username.github.io</code>，pages就会分配一个<code class="highlighter-rouge">username.github.io/reponame/</code>这样的域名；在coding上，只要账号不是第一次部署博客到pages服务，域名也会是<code class="highlighter-rouge">username.coding.me/reponame/</code>这样的；<del>而码云无论你是不是第一次，它的pages服务永远分配一个<code class="highlighter-rouge">username.gitee.io/reponame/</code>的域名。</del> （19年12月更新：码云上<code class="highlighter-rouge">reponame</code>取跟<code class="highlighter-rouge">username</code>一样就不会多出后面的二级域名了）。这些问题都可以通过在站点目录下<code class="highlighter-rouge">_cinfig.yml</code>文件中添加<code class="highlighter-rouge">baseurl</code>参数解决。而后面出现的问题就触及我的知识盲区了，上网查也没查出个所以然，最终我选择了绕道走。</p>
+<p>开个玩笑！</p>
 
-<p>第一个问题是因为根目录链接不对，网站加载不出js、css导致网页内容乱码了而已，而解决了该问题后，直接进不去网站了，进度条永远在不停地转圈，打开F12调试，看到是main.js文件中某某结构出了问题，我直接把报错信息输入搜索引擎也没找到类似问题，就因为这个无法解决的问题，这个博客搭建也搁浅到了19号，我实在不甘心放弃，因为那个主题实在是太好看了，19号上午，因为一个突发奇想导致我能直接绕过了那个bug，成功搭站。</p>
+<hr />
 
-<p>之前折腾的时候，有个主题就是通过本地<code class="highlighter-rouge">bundle exec jekyll serve</code>，得到<code class="highlighter-rouge">_site</code>文件夹，然后是将该文件夹中内容部署到远端服务器。想到这，我就拿它也试了试，居然……成功了！</p>
+<p>从科学的角度出发呢，人类进化了几百万年，都是蹲着拉翔，身体构造早已形成，有科学家表明：蹲着是最有利于肠胃通畅的姿势。但是，自从马桶的发明，让现代人彻底改变了几百万年形成的习惯。马桶的优点在于卫生以及隔绝气味，但是其使用方式违背了人体构造，这样的上厕所方式并不舒服和健康。听说欧洲人自中世纪起就在坐着拉翔了，所以马桶被西方人发明出来就是现在这个模样。但是西方反人类的习惯，我们中国人可没有，更没必要去学，为了卫生以及健康考虑，我们完全可以造出新式马桶，符合中国人蹲坑习惯的马桶。</p>
 
-<p>以上就是本次捯饰本站博客的大致历程，有一些细节略去不提，因为我自己也不大记得了~</p>
+<p>本人作为一个农村人，也是从小习惯了蹲坑，有时候去城里的亲戚家，上厕所于我就是一种煎熬，所以我练就了憋翔的本领，除非实在忍不住了，那几次忍不住的坐马桶经历至今仍深深烙在我的记忆中，忒恐怖了，人世间的痛苦莫过于此。</p>
+
+<p>如果在过去，在不了解这一切的情况下，我会随大流，努力去习惯，去逢迎所谓的主流，一定争先恐后去学西方的文明人、去学城里人。但是现在，😏，我们的宗旨是站着把钱挣了。</p>
+
+<p>现在，双方都不能妥协，都不能去迎合对方的习惯，本着求同存异的原则，为了男女双方共同的利益，建议两个都装。现在很多房型不都这种设计吗，两个卫生间，一个房里、一个客厅里。鉴于卫生考虑以及有客人参观的情况下，房里装马桶，客厅卫生间装蹲坑。如果你家里大部分人都要使用马桶，而你媳妇又有洁癖，就反过来装，灵活选择。</p>
+
+<p>还有另外一种情况，很多人会考虑成本的问题，只能装一种，如何抉择？</p>
+
+<p>为了保护不损害男女双方各自的利益，这种情况我也想出了解决办法，如果一个厕所同时具备马桶和蹲坑的功能，那岂不是两全其美了，为此，我特意设计了一款，下面是我的设计草图：</p>
+
+<div style="text-align:center;margin:20px 0;">
+<img src="/assets/img/matong.jpg" alt="草图1" width="60%" />
+</div>
+
+<p>据说，淘宝已经出现了很多大神设计，兼顾两种人群的需求，快去看看吧~</p>
+
+<p>不想这么麻烦，就只剩最后一个备用方案了：同意你媳妇的选择装马桶，你坐马桶的时候，添两个小板凳，虽然没有如履平地的那种安全感，但是还凑活，我现在用的就是这个搭配。</p>
+
+<p>男人嘛，在可接受的范围内礼让一下你未来媳妇，也是应该的。</p>
+
+<hr />
+
+<p>如果你的女盆友非常任性，必须你妥协，选择装马桶，还对你用板凳指指点点，甚至不让你用，让你每次上厕所都饱受煎熬之苦。</p>
+
+<p>对于这种情况，我们直接劝分，不开玩笑，真的！男人嘛，还是要对自己的菊花好一点……</p>
 
     </div>
   </article><div id="vcomments"></div>

@@ -2,7 +2,7 @@
 <html lang="zh"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content=""><title>jekyll折腾记 | 一叶知秋</title><link rel="shortcut icon" href="https://cinzano.oss-cn-shanghai.aliyuncs.com/images/ye.png" />
+  <meta name="author" content=""><title>我的博客之路 | 一叶知秋</title><link rel="shortcut icon" href="https://cinzano.oss-cn-shanghai.aliyuncs.com/images/ye.png" />
 <script>
   var _hmt = _hmt || [];
   (function() {
@@ -64,31 +64,44 @@
   </div>
   <article class="post">
     <header class="post__header">
-      <h1 class="post__title">jekyll折腾记</h1>
+      <h1 class="post__title">我的博客之路</h1>
       <div class="post__meta">
-        <time>2019-07-19 22:41</time>
+        <time>2020-02-28 17:38</time>
       </div>
     </header>
     <div class="post__content content">
-      <p>这十几天，把正业都荒废了，一直在漫无边际没头没脑地“搞博客”。我一直钟情的静态博客平台是HEXO，而就在前几天（具体忘了是什么原因）让我决定去尝试一下jekyll。</p>
+      <p>如果把社交媒体的个人空间也算作博客的话，最早可追溯至初中时代，初中女神在当时的我看来是最前沿最fashionable的存在，记得第一次在PC端访问她的QQ空间时，顿时被其华丽的空间装扮以及特效惊艳到了，时至今日，我已记不大清那个UI的具体样式，只记得是暗黑系风格，配着淅淅沥沥的小雨，鼠标滑动还是星辰轨迹特效，哪怕现在估计也能击中我的审美。那一刻，我的心里就埋下了一个种子，等我有了电脑、待我技术高超、也要设计空间。</p>
 
-<p>按照官方文档，终于把环境配置好了，虽然过程中还是出了些问题，按着文档来也不让你一帆风顺，见怪不怪了。又尝试了官网上大量自认为好看的主题，一番下来后，jekyll给我的感觉就是 很出乎意料，很不方便，与HEXO相去甚远，加之那些官网主题也并没有多么惊艳，于是就放弃了使用jekyll来折腾。</p>
+<p>后来，初二的暑假，我有了一个短暂接触电脑的时期（虽然电脑是别人的），玩空间期间，发现了空间商城里的自定义样式，用的是Flash这种已被淘汰了的技术，当时的我对flash的粗略认知也就是闪电、小学信息技术教材里提到的电脑制作动画技术。</p>
 
-<p>18号晚上，那天我又在尝试搭WordPress博客，我正在某主题网站看WP主题，机缘巧合之下，让我看到了<a href="https://erl.im">叶夕青兮</a>，有意思的是该博客主题<a href="https://github.com/erlzhang/jekyll-theme-persephone">persephone</a>并非是WP主题，而是基于jekyll平台，而这个网站设计得实在是太惊艳了，当时我就心动了，爱了爱了！折腾jekyll的动力立刻又有了。</p>
+<p>也不知哪来的念头，我坚定认为女神的空间UI，凭黄钻能享用的付费主题肯定达不到，一定是自己DIY的。当时我就展现了与我现在学习技术一样的思路，“遇事不决百度之”，我上网查了相关资料，就开始上手定制空间，我记得flash元素需要去其他网站下载模板素材，下载素材是件麻烦事，加上那台电脑也不是我的，我能玩的时间也不多，最后并没有拼凑出我心里那个理想的UI就不了了之了，我现在的空间装扮用的是一款黄钻主题，也是暗黑系，就是受当年审美的影响。黄钻是某年过年腾讯发红包送的七天，早已过期，但主题还能用，只要你不修改。</p>
 
-<p>因为上次已经了解过了，且环境也配置好了，这一次把主题源代码文件撸下来以后只要几个命令就好了：</p>
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
-bundle exec jekyll serve
-</code></pre></div></div>
-<p>当我把一切调好，把它部署到免费静态博客托管平台(GitHub、Coding、码云)上时，本地localhost运行良好而到了远端就不行了。</p>
+<p>第三方服务终究限制太多，不仅是QQ空间，包括博客园、CSDN这些，依然受制于人，自由度不高，狭义的博客应该是指私人网站这类，我正式开始折腾个人网站式的博客起源于18年上半年刚开学的时候，那天我一如既往地在考研群里水或看别人水。</p>
 
-<p>一开始是网站根目录设置不对。GitHub上如果项目名称不是<code class="highlighter-rouge">username.github.io</code>，pages就会分配一个<code class="highlighter-rouge">username.github.io/reponame/</code>这样的域名；在coding上，只要账号不是第一次部署博客到pages服务，域名也会是<code class="highlighter-rouge">username.coding.me/reponame/</code>这样的；<del>而码云无论你是不是第一次，它的pages服务永远分配一个<code class="highlighter-rouge">username.gitee.io/reponame/</code>的域名。</del> （19年12月更新：码云上<code class="highlighter-rouge">reponame</code>取跟<code class="highlighter-rouge">username</code>一样就不会多出后面的二级域名了）。这些问题都可以通过在站点目录下<code class="highlighter-rouge">_cinfig.yml</code>文件中添加<code class="highlighter-rouge">baseurl</code>参数解决。而后面出现的问题就触及我的知识盲区了，上网查也没查出个所以然，最终我选择了绕道走。</p>
+<p>那天晚上，一群人突然聊起了博客，有位兄台提出了用Hexo+Github可以免费建站，并把他写的教程发到了群里<a href="https://kabeor.github.io/Hexo+GitPage%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">链接</a>。一听建博客成本几乎为0且操作非常简单，我立马把他的教程收藏了，这就是为何我还能记得那天是3月24号，我们日常使用手机，各种操作痕迹也能帮助我们回忆起哪段时间干了哪些事。</p>
 
-<p>第一个问题是因为根目录链接不对，网站加载不出js、css导致网页内容乱码了而已，而解决了该问题后，直接进不去网站了，进度条永远在不停地转圈，打开F12调试，看到是main.js文件中某某结构出了问题，我直接把报错信息输入搜索引擎也没找到类似问题，就因为这个无法解决的问题，这个博客搭建也搁浅到了19号，我实在不甘心放弃，因为那个主题实在是太好看了，19号上午，因为一个突发奇想导致我能直接绕过了那个bug，成功搭站。</p>
+<p>说干就干，花了一个晚上把博客搞好并美化，假模假样写几篇技术水文放在里面，然后打开浏览器输入网址，供自己欣赏，当时十分享受这个玩意带来的快感。但久而久之，就审美疲劳了，后来因为有其他更重要的事，就再没理会过它了……同年五月份，我跟研友聊起计算机时说我搭了个博客网站，正要给他看时，却加载个半天也没加载出来，之后的日子里，感觉访问起来越来越慢，我都不愿意打开它了。</p>
 
-<p>之前折腾的时候，有个主题就是通过本地<code class="highlighter-rouge">bundle exec jekyll serve</code>，得到<code class="highlighter-rouge">_site</code>文件夹，然后是将该文件夹中内容部署到远端服务器。想到这，我就拿它也试了试，居然……成功了！</p>
+<p>眨眼间时间就到了19年上半年，注意，此时我的HTML、CSS、JS水平都为0，我的hexo主题用的非常著名的‘NexT’，但我大胆做了一次尝试，我眼红某位大佬自己修改的NexT主题，正好他把博客源码也分享出来了，我就一股脑照搬过来了，但是需要自己改的地方太多了，修改的过程也学习到了一些零碎前端知识，大部分该改的我都改成自己的了，还有剩下就触及到我知识盲区了。</p>
 
-<p>以上就是本次捯饰本站博客的大致历程，有一些细节略去不提，因为我自己也不大记得了~</p>
+<p>后来，到了六月份，我陆续使用了‘<a href="https://fech.in">Diaspora</a>’、‘<a href="https://sakura.hojun.cn">Sakura</a>’等多款主题，都是非常漂亮的主题，也都移植于知名开源WP主题，前者是「素锦」，后者是Mashiro大佬自用的。</p>
+
+<p>暑假又尝试了jekyll，并使用了一款非常惊艳的主题<a href="https://github.com/erlzhang/jekyll-theme-persephone">Persephone</a>。这是我唯一还愿意用jekyll的因素，感觉这玩意真没hexo好用。</p>
+
+<p>同年，八月底。此时，我刚刚粗略地系统过了一遍HTML，我正想找点练手的事情实践实践，突发奇想继续尝试，这一次干了票大的，我又眼红某个更漂亮的主题，但是这款是WP主题，还是付费的，原作者官网早就失效了，相当于有价无市，售价￥69，真的性价比相当高了。</p>
+
+<p>老天爷保佑，这次的尝试真的太令人惊喜了，本来我也只是个头脑一热的想法，没想到这么顺利。我先是上网找教程资料：“如何自制hexo主题”，最后确立了下列参考网页：</p>
+<ul>
+  <li><a href="https://ejs.bootcss.com/">EJS官网</a></li>
+  <li><a href="https://www.cnblogs.com/mmzuo-798/p/10451385.html">从零开始制作 Hexo 主题</a></li>
+  <li><a href="https://www.cnblogs.com/yyhh/p/11058985.html">Hexo主题开发</a></li>
+</ul>
+
+<p>然后，我将该主题某使用者的网站每一页用浏览器的保存网页保存到本地，剩下的事情就简单了，只是做起来很琐碎、麻烦。</p>
+
+<p>hexo的主题运行机制，我是参考<a href="https://hexo.io/zh-cn/docs/">官方文档</a>了解到部分的，掌握了这个，再了解下ejs引擎的语法，就开始了“制作”过程。这样做主题真的挺简单，css、js不用你写，只需把HTML填充到特定的模板文件，加以修改就能组成主题了。最后只花了两天时间就基本做好了，后续几个月都在不断完善的路上……</p>
+
+<p>我目前的技术也仅限于此了，updated in 2020.02.28</p>
 
     </div>
   </article><div id="vcomments"></div>

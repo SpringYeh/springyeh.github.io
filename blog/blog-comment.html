@@ -16,16 +16,12 @@
   <meta name="description" content=""><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
 <link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
 <link rel="stylesheet" href="/assets/css/custom.css" />
-<link rel="stylesheet" href="/assets/css/default.css" name="darkmode" />
 
 <script src="/assets/js/main.js?v=0.1.7" defer></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
 	<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
 	<script src="/assets/js/highlight.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script> 
-	<!-- prism插件代码风格 -->
-<!-- 	<link rel="stylesheet" href="/assets/css/prism.css" />
-	<script src="/assets/js/prism.js"></script> --><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+	<script>hljs.initHighlightingOnLoad();</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 	<script type="text/x-mathjax-config">
 	    MathJax.Hub.Config({
 	      tex2jax: {
@@ -39,20 +35,6 @@
 </head>
 
 <body class="body-post">
-  	<script>
-	(function(){
-		var t = new Date();
-		console.log('当前小时：' + t.getHours());
-	    var demo = document.getElementsByName("darkmode")[0];
-	    if(t.getHours() >= 19 || t.getHours() <= 6){
-	    	demo.href = "/assets/css/dark.css";
-	    	console.log('夜间模式开启');
-	    }else{
-	    	demo.href = "/assets/css/default.css";
-	    	console.log('夜间模式关闭');
-	    }
-	})();
-</script>
     <a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
 </a><main class="post__wrapper"><nav class="top-nav">
 
@@ -93,7 +75,7 @@
 <h2 id="valine">valine</h2>
 <p>valine需要用到LeanCloud网站，去该网站注册一个账号。创建应用，计价方式选择免费的开发版，设置好会得到你所创建应用的 client 和 key，这两个东西后面要用到。然后在安全中心绑定自己的网站域名，到了这里，LeanCloud的设置基本就结束了，下面为博客配置valine。</p>
 
-<p>valine的配置视不同平台而定，如果你已经熟悉了你的博客的设计布局，自然就会配置了，下面以本站主题<code class="highlighter-rouge">Persephone</code>为例，本站由jekyll驱动。</p>
+<p>valine的配置视不同平台而定，如果你已经熟悉了你的博客的设计布局，自然就会配置了，下面以本站主题<code class="highlighter-rouge">Persephone</code>为例，由jekyll驱动。</p>
 
 <p>在<code class="highlighter-rouge">_include/comments/</code>目录下新建一个“valine.html”，添加如下代码：</p>
 
@@ -138,7 +120,7 @@
 {%- endcase -%}
 </code></pre></div></div>
 
-<p>至此，所有设置基本搞好了，我之前在有个地方发生了一个小问题，就是valine.html中div标签中的id参数必须与下面Valine元组的el参数中#后面内容一致，而我参考的教程所给代码居然不一样，太坑了吧……</p>
+<p>至此，所有设置基本搞好了，我之前在有个地方发生了一个小问题，就是valine.html中div标签中的id参数必须与下面Valine元组的el参数中#后面内容一致（喔！折腾的时候我对选择器还一窍不通呢），而我参考的教程所给代码居然不一样，太坑了吧……</p>
 
 <h2 id="gittalk">gittalk</h2>
 <p>从名字就大概猜出该评论插件是GitHub本家的，肯定要用到GitHub。</p>
@@ -260,7 +242,7 @@
 </code></pre></div></div>
 <p>如果照着网上大多数教程，可能会有个“ <code class="highlighter-rouge">Error:Validation Failed </code> ”bug，而解决该bug的方法就是上述内容，所以本文直接用了这个方法。</p>
 
-<hr>
+<hr />
 <p>2019.8.4 –updated</p>
 
 <p>本博客经历了GitTalk数天又换回了valine，去除了评论框下方<code class="highlighter-rouge">powered by valine</code>，在valine.html的新建Valine对象语句下面加入以下代码：</p>
@@ -291,7 +273,7 @@
 
 <p><a href="https://deserts.io/valine-admin-document/">valine-admin配置手册</a></p>
 
-<p>评论框样式也更换了该作者的valine.min.js，的确更酷炫了，可惜的是小黑不能用了，因为我不会改。</p>
+<p>评论框样式也更换了该作者的valine.min.js，的确更酷炫了。</p>
 
 <!--
 结语：valine需要依赖LeanCloud，而从上个月25号开始，没有实名认证的用户在一个月缓冲器后，也就是本月25号以后，将不能再使用他家服务。看到这个消息，我吓得立刻跑去认证，但是这个网站认证要身份证也就算了，还要用户提供手持身份证照，这就很过分了。
@@ -305,7 +287,7 @@
     </div>
   </article><div id="vcomments"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='/assets/js/valine-admin.min.js'></script>
+<script src='/assets/js/myvaline.js'></script>
 <script>
     new Valine({
         // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛)

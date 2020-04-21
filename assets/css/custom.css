@@ -1,3 +1,15 @@
+.poem-page .chapter__content {
+  text-align: center;
+}
+.tale-page .chapter__content {
+  font-size: 15px;
+  font-family: 'Kaiti SC',STXiHei,san-serif;
+}
+body.tale-page {
+  background : url(/assets/img/tale-bg.jpg) no-repeat center/cover;
+}
+
+
 .content code.highlighter-rouge {
     color: rgba(0,80,152,0.988);
     background: rgba(135,218,255,0.722);

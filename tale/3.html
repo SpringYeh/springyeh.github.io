@@ -34,7 +34,17 @@
 </head>
 
 <body class="body-chapter">
-    <div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+    <script>
+	if('万事集'== '诗'){
+		$('body').addClass("poem-page");
+		// console.log( '万事集' );
+	}else if('万事集'== '万事集'){
+		$('body').addClass("tale-page");
+		// console.log( '万事集' );
+	}
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
   <nav role="navigation">
     <ul class="summary">
       <li class="chapter ">
@@ -124,7 +134,7 @@
 
 <p>而此时，蜀山新弟子楼东六舍的老大，正缩在被窝里和三个难兄难弟述说一起悲惨的往事……</p>
 
-<p>“那是一个跟平常的日子，我没招谁没惹谁地从紫电阁回宿舍，结果在七楼的入口处，发现墙上多出来十六个字。”</p>
+<p>“那是一个很平常的日子，我没招谁没惹谁地从紫电阁回宿舍，结果在七楼的入口处，发现墙上多出来十六个字。”</p>
 
 <p>“就是现在墙上写的‘蜀山禁地，非请莫入。如若擅闯，后果自负。’？”老二问道。</p>
 
@@ -172,7 +182,7 @@
 
 <p>“奇怪，怎么什么事都没有发生？”四个师兄弟看着慢慢走上七楼的螭落。</p>
 
-<p>“别急，肯给是换阵了。”老大信心十足。</p>
+<p>“别急，肯定是换阵了。”老大信心十足。</p>
 
 <p>话音未落，只听咻的一声，一个红色物体极速从七楼飞出，螭落急闪，红色的物体撞在了墙上，是一个小鸟的模型。</p>
 
@@ -200,7 +210,7 @@
 
 <p>“买得再贵那钱也是拿给你们村子修水渠，我又没多拿一文。”罗瑟撇撇嘴。</p>
 
-<p>“那不一样的，做买卖是要讲信誉的，我们村产的金蚕丝衣质量本来就好，再配上小罗哥哥你传授给我的春暖符，本来就是最好的抗寒衣物。百度搜索”螭落愤愤，“结果被你这么一搞，变成敲诈了。”</p>
+<p>“那不一样的，做买卖是要讲信誉的，我们村产的金蚕丝衣质量本来就好，再配上小罗哥哥你传授给我的春暖符，本来就是最好的抗寒衣物。”螭落愤愤，“结果被你这么一搞，变成敲诈了。”</p>
 
 <p>“不这么卖，你们村子那水渠啥时才能修好？”罗瑟反问道。</p>
 
@@ -250,7 +260,7 @@
 
 <p>“小型金蚕丝衣，呵护你心爱的小鹤、小鹿！宠物专用！快给你的宠物保保暖吧！”广场的另一角，苏锦和螭落被一群抱着宠物的师姐师妹围在中间，忙得不亦乐乎。</p>
 
-<p>“我，我好像发现真凶了！”一路赏玩着雪景的寒畴看到谢这幕场景，突然打了个冷战，想到了什么。</p>
+<p>“我，我好像发现真凶了！”一路赏玩着雪景的寒畴看到这幕场景，突然打了个冷战，想到了什么。</p>
 
 <p>“我们早就发现了，问题是，你敢揭穿吗？”老大，老二，老三不知什么时候来到了寒畴身边，一齐看着广场上乱忙的罗瑟、苏锦、螭落三人。虽然三人仍在一脸微笑地忙乱，但在东六舍四弟子的眼里，那漫天的风雪，似乎化成了无数阵法，朝他们四人攻伐而来……</p>
 
@@ -268,21 +278,7 @@
   <path d="M12 30 L24 16 12 2" />
 </svg>
 </a></div>
-</div><script>
-  function changeCss() {
-    // console.log( '万事集' );
-    if('万事集'== '诗'){
-      var demo = document.querySelector('.chapter__content');
-      demo.style.textAlign = "center";
-      console.log( '万事集'+' : function run' );
-    }
-    else{
-      console.log( '!诗'+' : function do not run' );
-    }
-  }
-  changeCss();
-</script>
-
+</div>
   </body>
   <script>
 	window.AudioContext = window.AudioContext || window.webkitAudioContext;

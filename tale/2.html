@@ -34,7 +34,17 @@
 </head>
 
 <body class="body-chapter">
-    <div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+    <script>
+	if('万事集'== '诗'){
+		$('body').addClass("poem-page");
+		// console.log( '万事集' );
+	}else if('万事集'== '万事集'){
+		$('body').addClass("tale-page");
+		// console.log( '万事集' );
+	}
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
   <nav role="navigation">
     <ul class="summary">
       <li class="chapter ">
@@ -330,21 +340,7 @@
   <path d="M12 30 L24 16 12 2" />
 </svg>
 </a></div>
-</div><script>
-  function changeCss() {
-    // console.log( '万事集' );
-    if('万事集'== '诗'){
-      var demo = document.querySelector('.chapter__content');
-      demo.style.textAlign = "center";
-      console.log( '万事集'+' : function run' );
-    }
-    else{
-      console.log( '!诗'+' : function do not run' );
-    }
-  }
-  changeCss();
-</script>
-
+</div>
   </body>
   <script>
 	window.AudioContext = window.AudioContext || window.webkitAudioContext;

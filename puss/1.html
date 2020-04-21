@@ -34,7 +34,17 @@
 </head>
 
 <body class="body-chapter">
-    <div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+    <script>
+	if('少女'== '诗'){
+		$('body').addClass("poem-page");
+		// console.log( '少女' );
+	}else if('少女'== '万事集'){
+		$('body').addClass("tale-page");
+		// console.log( '少女' );
+	}
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
   <nav role="navigation">
     <ul class="summary">
       <li class="chapter ">
@@ -75,21 +85,7 @@
   <path d="M20 30 L8 16 20 2" />
 </svg>
 </a></div>
-</div><script>
-  function changeCss() {
-    // console.log( '少女' );
-    if('少女'== '诗'){
-      var demo = document.querySelector('.chapter__content');
-      demo.style.textAlign = "center";
-      console.log( '少女'+' : function run' );
-    }
-    else{
-      console.log( '!诗'+' : function do not run' );
-    }
-  }
-  changeCss();
-</script>
-
+</div>
   </body>
   <script>
 	window.AudioContext = window.AudioContext || window.webkitAudioContext;

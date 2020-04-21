@@ -34,7 +34,17 @@
 </head>
 
 <body class="body-chapter">
-    <div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+    <script>
+	if('万事集'== '诗'){
+		$('body').addClass("poem-page");
+		// console.log( '万事集' );
+	}else if('万事集'== '万事集'){
+		$('body').addClass("tale-page");
+		// console.log( '万事集' );
+	}
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
   <nav role="navigation">
     <ul class="summary">
       <li class="chapter ">
@@ -66,7 +76,7 @@
           <article class="chapter__content content">
             <h1 id="他日我若为偶像">他日我若为偶像</h1>
 
-<p>“我一定会回来的！”蜀山禁地前，一个凄惨的声音突然响起，紧接着，一个身影匆匆忙忙歪歪扭扭地御空飞起，飞块地消逝在远去。百度搜索</p>
+<p>“我一定会回来的！”蜀山禁地前，一个凄惨的声音突然响起，紧接着，一个身影匆匆忙忙歪歪扭扭地御空飞起，飞块地消逝在远去。</p>
 
 <p>“这场景好面熟啊。”螭落看着如同星光一般在远处一闪即逝的师兄，若有所思。</p>
 
@@ -172,7 +182,7 @@
 
 <p>“大师兄，二师兄！”罗瑟、苏锦、螭落默契地相互使了一个眼色，点点头，一齐站到大师兄跟前。</p>
 
-<p>“太好了，你们终于开了。”大师兄和二师兄喜形于色，“快快快，我们马上出发！”</p>
+<p>“太好了，你们终于来了。”大师兄和二师兄喜形于色，“快快快，我们马上出发！”</p>
 
 <p>“出发？去哪里啊？”罗瑟、苏锦和螭落感到莫名其妙。</p>
 
@@ -214,7 +224,7 @@
 
 <p>“哼！”大师兄冷哼，“跳梁小丑，受死吧。 准备追击。”</p>
 
-<p>“不行，别追！”罗瑟急忙上前，“大师兄，明显那个妖物在引诱你，他根本没剑。”</p>
+<p>“不行，别追！”罗瑟急忙上前，“大师兄，明显那个妖物在引诱你，他根本没中剑。”</p>
 
 <p>“拜托，演戏也演得逼真一点啊。”罗瑟冲着虚空喊道。</p>
 
@@ -292,21 +302,7 @@
   <path d="M12 30 L24 16 12 2" />
 </svg>
 </a></div>
-</div><script>
-  function changeCss() {
-    // console.log( '万事集' );
-    if('万事集'== '诗'){
-      var demo = document.querySelector('.chapter__content');
-      demo.style.textAlign = "center";
-      console.log( '万事集'+' : function run' );
-    }
-    else{
-      console.log( '!诗'+' : function do not run' );
-    }
-  }
-  changeCss();
-</script>
-
+</div>
   </body>
   <script>
 	window.AudioContext = window.AudioContext || window.webkitAudioContext;

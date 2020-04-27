@@ -12,7 +12,7 @@
   })();
 </script>
   <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
-  <meta name="description" content="一叶知秋|日常|学而时习之|读万卷书，行万里路|少女与猫|诗"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
 <link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
 <link rel="stylesheet" href="/assets/css/custom.css" />
 
@@ -34,7 +34,7 @@
 </head>
 
 <body class="body-chapter">
-    <script>
+	<script>
 	if('学而时习之'== '诗'){
 		$('body').addClass("poem-page");
 		// console.log( '学而时习之' );
@@ -157,78 +157,6 @@
 </svg>
 </a></div>
 </div>
-  </body>
-  <script>
-	window.AudioContext = window.AudioContext || window.webkitAudioContext;
-	(function () {
-	    if (!window.AudioContext) { 
-	        // alert('当前浏览器不支持Web Audio API');
-	        return;
-	    }
-	    var audioCtx = new AudioContext();
-	    // 发出的声音频率数据，表现为音调的高低
-	    // var arrFrequency = [196.00, 220.00, 246.94, 261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
-	    // 欢乐颂
-	    var arrFrequency = '329.628 329.628 349.228 391.995 391.995 349.228 329.628 293.665 261.626 261.626 293.665 329.628 329.628 293.665 293.665 329.628 329.628 349.228 391.995 391.995 349.228 329.628 293.665 261.626 261.626 293.665 329.628 293.665 261.626 261.626 293.665 293.665 329.628 261.626 293.665 329.628 349.228 329.628 261.626 293.665 329.628 349.228 329.628 293.665 261.626 293.665 195.998 329.628 329.628 349.228 391.995 391.995 349.228 329.628 293.665 261.626 261.626 293.665 329.628 293.665 261.626 261.626'.split(' ');
-	    var start = 0, direction = 1;
+</body>
 
-	    var musicFont = '♩ ♪ ♫ ♬ ♭ ♮ ♯'.split(' ');
-
-	    var play = false;
-	    $('.logo_img').mouseenter(function(e) {
-	        var frequency = arrFrequency[start];
-	        if (!frequency) {
-	            // direction = -1 * direction;
-	            // start = start + 2 * direction;
-	            start = 0;
-	            frequency = arrFrequency[start];
-	        }
-	        start = start + direction;
-	        
-	        // 创建一个OscillatorNode, 它表示一个周期性波形（振荡），基本上来说创造了一个音调
-	        var oscillator = audioCtx.createOscillator();
-	        // 创建一个GainNode,它可以控制音频的总音量
-	        var gainNode = audioCtx.createGain();
-	        // 把音量，音调和终节点进行关联
-	        oscillator.connect(gainNode);
-	        // audioCtx.destination返回AudioDestinationNode对象，表示当前audio context中所有节点的最终节点，一般表示音频渲染设备
-	        gainNode.connect(audioCtx.destination);
-	        // 指定音调的类型，其他还有square|triangle|sawtooth
-	        oscillator.type = 'sine';
-	        // 设置当前播放声音的频率，也就是最终播放声音的调调
-	        oscillator.frequency.value = frequency;
-	        // 当前时间设置音量为0
-	        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-	        // 0.01秒后音量为1
-	        gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.01);
-	        // 音调从当前时间开始播放
-	        oscillator.start(audioCtx.currentTime);
-	        // 1秒内声音慢慢降低，模拟钢琴回响的音色
-	        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1);
-	        // 1秒后完全停止声音
-	        oscillator.stop(audioCtx.currentTime + 1);
-	        play = true;
-	        if (play) {
-	            var n = Math.round(Math.random() * 7); 
-	            var $i = $("<b/>").text(musicFont[n]);
-	            var x = e.pageX, y = e.pageY - 5;
-	            $i.css({
-	                "z-index":99999,
-	                "top":y - 20,
-	                "left":x,
-	                "position":"absolute",
-	                "color":"#65dbfb"
-	            });
-	            $('body').append($i);
-	            $i.animate(
-	                { "top": y - 180, "opacity": 0 },
-	                1500,
-	                function() { $i.remove(); }
-	            );
-	            e.stopPropagation();
-	        }
-	        play = false;
-	    })
-	})();
-  </script>
 </html>

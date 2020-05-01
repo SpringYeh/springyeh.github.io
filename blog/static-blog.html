@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>静态博客何去何从 | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="">
+  <meta name="description" content=""><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+	<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+	<script src="/assets/js/highlight.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Config({
+	      tex2jax: {
+	        inlineMath: [['$','$'], ['\\(','\\)']],
+	      }
+	    });
+	</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script><!-- 页面点击小红心 -->
+<script src="/assets/js/love.js"></script>
+
+
+</head>
+
+<body class="body-post">
+	<a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><main class="post__wrapper"><nav class="top-nav">
+
+<a href="https://springyeh.github.io/wiki-note" class="nav-link ">wiki</a>
+
+
+<a href="/about.html" class="nav-link ">关于</a>
+
+
+<a href="/archive.html" class="nav-link ">归档</a>
+
+
+<a href="/lab.html" class="nav-link ">实验室</a>
+
+
+</nav><div class="post__top_navs clearfix">
+    <nav class="post__archive_path"><a href="/blog/" id="archiveBtn">
+        <div class="post__archive_icon">
+          <svg width="40" height="40">
+            <circle class="circle-progress" r="18" cy="20" cx="20"  stroke-linejoin="round" stroke-linecap="round" />
+          </svg>
+          <span class="post__archive_icon"></span>
+        </div>
+        目录
+      </a>
+    </nav>
+  </div>
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">静态博客何去何从</h1>
+      <div class="post__meta">
+        <time>2020-04-29 09:38</time>
+      </div>
+    </header>
+    <div class="post__content content">
+      <p>在捣鼓博客这一块，我的宗旨是能免费就用免费的，最初同大家一样，折腾HEXO时就是托管在GitHub Pages，可惜服务器在美国，国内访问速度太慢了。后来发现了国内最著名两大代码托管平台：码云和coding，两者都试了。coding综合最好，提供免费的推送部署、自定义域名以及HTTPS，GitHub有的优点他都有，而且国内速度很快，但却有个致命缺陷——时不时宕机，这不，两天了，我部署在coding的网站都打不开。码云的效果更好，至今从未宕机过，它的缺点是coding免费提供的那三个我十分需要的功能，它都不提供，只有购买￥99/年的Pro版才有。所以就很烦，他们二者要是能互补一下就好了。</p>
+
+<p>昨晚百度了一下，有人还推荐了百度、华为、阿里的代码托管，可惜我试了试发现不知道是啥玩意，百度那个云好不容易把认证通过后，建了项目，里面空白一片，什么按钮都没有，像是没做好就放出来了一样；阿里云代码托管平台从阿里云首页进去我都没找到，还是靠别人链接进的，UI也与首页大不相同，好不容易把代码上传上去，发现找不到Pages的功能，我怀疑这个站点早被阿里放弃了。</p>
+
+<p>最后，在VE2X论坛，发现了几种从未接触的方案。</p>
+
+<h6 id="方案一-netlify-加速-github-pages">方案一 Netlify 加速 GitHub Pages</h6>
+<p>网上都说，GitHubPages 访问太慢，用Netlify就能解决，我也纳闷呢，两个都是美国网站，为什么能加速。昨晚我也试了，相比之前的纯GitHub，这玩意的确速度快一点，但是依然很慢啊，远没有网上说得那么好，算是一个相对操作较为简单综合来看最折中的办法了，前面提的那些基本功能都是免费的，可以忍受稍慢一些速度的可以采用此方法。</p>
+
+<h6 id="方案二-云平台对象存储">方案二 云平台对象存储</h6>
+<p>国内最大的两家云服务平台当属腾讯云和阿里云，他们各自的对象存储服务分别叫COS和OSS。昨晚已初步尝试了阿里云OSS，新建一个Bucket，地点选香港（如果选中国内地地区，则后面绑定自定义域名时须是备案的，否则不可用，腾讯COS也是如此），然后将HEXO生成的public文件夹整个丢进这个存储桶，并在OSS基础设置-静态页面那里设置好选项，绑定好域名，就可正常访问，速度感人。</p>
+
+<p>目前我觉得最好的方案就是方案二了，如果每天访问量不大，用这个足够了，一年可能一块钱都要不到。</p>
+
+    </div>
+  </article><div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='/assets/js/myvaline.js'></script>
+<script>
+    new Valine({
+        // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛)
+        av: AV, 
+        el: '#vcomments',
+        emoticon_url: 'https://cloud.panjunwen.com/alu',
+        emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+        app_id: 'V0c7wvS5oOSNRtQQTYgvI0Fr-MdYXbMMI',   //这里变量的取值在网站配置文件里_config.yml
+        app_key: 'J5DrVIaWO5DzViOkEP7DHNDw', //这里变量的取值在网站配置文件里_config.yml
+        placeholder:'你是我一生只会遇见一次的惊喜 ：）' ,   //这里变量的取值在网站配置文件里_config.yml
+        notify: false, 
+        verify: false
+    });
+    //增加以下六行代码去除 power by valine
+    var infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+      infoEle.childNodes.forEach(function(item) {
+        item.parentNode.removeChild(item);
+      });
+    }
+</script></main>
+
+<!-- 下面这段使得只有博客页的代码高亮，book页不会，现已改为都支持 -->
+<!--<script>hljs.initHighlightingOnLoad();</script>--><footer class="site-footer">
+  © 2020<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+
+</body>
+
+</html>

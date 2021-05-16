@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>1063 Set Similarity - 学而时习之 | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+<script src="/assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<script type="text/x-mathjax-config">
+	    MathJax.Hub.Config({
+	      tex2jax: {
+	        inlineMath: [['$','$'], ['\\(','\\)']],
+	      }
+	    });
+	</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script></head>
+
+<body class="body-chapter">
+	<script>
+	if('学而时习之'== '诗'){
+		$('body').addClass("poem-page");
+		// console.log( '学而时习之' );
+	}else if('学而时习之'== '万事集'){
+		$('body').addClass("tale-page");
+		// console.log( '学而时习之' );
+	}
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+  <nav role="navigation">
+    <ul class="summary">
+      <li class="chapter ">
+        <a href="/learn/" class="custom-link">学而时习之</a>
+      </li>
+      <li class="divider"></li><li class="chapter "><a href="/learn/pat-A.html">PAT 甲级</a><ul class="articles"><li class="chapter ">
+            <a href="/learn/A1001.html">1001 A+B Format</a>
+          </li><li class="chapter ">
+            <a href="/learn/A1042.html">1042 Shuffling Machine</a>
+          </li><li class="chapter active">
+            <a href="/learn/A1063.html">1063 Set Similarity</a>
+          </li><li class="chapter ">
+            <a href="/learn/A1064.html">1064 Complete Binary Search Tree</a>
+          </li><li class="chapter ">
+            <a href="/learn/A1099.html">1099 Build A Binary Search Tree</a>
+          </li></ul></li></ul>
+  </nav>
+</div>
+<div class="book__body">
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><a href="/archive.html" class="sidebar__toggler">
+  <span class="sidebar__toggler_top"></span>
+  <span class="sidebar__toggler_middle"></span>
+  <span class="sidebar__toggler_bottom"></span>
+</a><div class="book-header" role="navigation">
+    <a href="#" id="summaryToggler" class="summary__toggler">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="1"></circle>
+  <circle cx="19" cy="12" r="1"></circle>
+  <circle cx="5" cy="12" r="1"></circle>
+</svg>
+
+    </a>
+<!--   <h1>
+    1063 Set Similarity - 学而时习之
+  </h1> -->
+</div><main class="chapter__wrapper" tabindex="-1" role="main">
+        <div class="chapter__inner">
+          <article class="chapter__content content">
+            <h1 id="a1063-set-similarity-25-分">A1063. Set Similarity (25 分)</h1>
+
+<p>Given two sets of integers, the similarity of the sets is defined to be $N_c/N_t$ ×100% , where $N_c$ is the number of distinct common numbers shared by the two sets, and $N_t$ is the total number of distinct numbers in the two sets. Your job is to calculate the similarity of any given pair of sets.</p>
+
+<h3 id="input-specification">Input Specification:</h3>
+<p>Each input file contains one test case. Each case first gives a positive integer N (≤50) which is the total number of sets. Then N lines follow, each gives a set with a positive M (≤$10^4$ ) and followed by M integers in the range [$0,10^9$]. After the input of sets, a positive integer K (≤2000) is given, followed by K lines of queries. Each query gives a pair of set numbers (the sets are numbered from 1 to N). All the numbers in a line are separated by a space.</p>
+
+<h3 id="output-specification">Output Specification:</h3>
+<p>For each query, print in one line the similarity of the sets, in the percentage form accurate up to 1 decimal place.</p>
+
+<h3 id="sample-input">Sample Input:</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3
+3 99 87 101
+4 87 101 5 87
+7 99 101 18 5 135 18 99
+2
+1 2
+1 3
+</code></pre></div></div>
+
+<h3 id="sample-output">Sample Output:</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>50.0%
+33.3%
+</code></pre></div></div>
+
+<h3 id="题目大意">题目大意</h3>
+<p>给N个数的集合，然后有M个查询，每次查询其中两个数集中相同元素与全部元素的比值，即求俩集合的交集与并集（均需去重）之比，输出比率用百分比表示，保留一位小数。</p>
+
+<h3 id="分析">分析</h3>
+<p>该题用set去存储给定的N个集合，存储过程中就已去重完毕，查询时输入俩集合序号 a b，需要算出交集并集中数的数目，新建一total集合，先<code class="highlighter-rouge">total=s[a]</code>让其等于a集合，然后用迭代器遍历b集合，将其中元素全部插入total，去重工作也会同步自动完成，并集数即等于total集合的size，而交集数=<code class="highlighter-rouge">s[a].size + s[b].size - total.size</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;cmath&gt;
+#include&lt;cstdlib&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;set&gt;
+#include&lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">[</span><span class="mi">55</span><span class="p">];</span>
+<span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">total</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+			<span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+			<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">num</span><span class="p">);</span>
+			<span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">k</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+		<span class="n">scanf</span><span class="p">(</span><span class="s">"%d%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+		<span class="n">total</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+		<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">begin</span><span class="p">();</span><span class="n">it</span><span class="o">!=</span><span class="n">s</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">end</span><span class="p">();</span><span class="n">it</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">total</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="kt">double</span> <span class="n">sim</span><span class="o">=</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="n">total</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="n">total</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"%.1f%%</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">sim</span><span class="o">*</span><span class="mi">100</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+          </article>
+        </div><footer class="site-footer">
+  © 2021<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+</main>
+    </div><a href="/learn/A1042.html" class="navigation navigation-prev" aria-label="Previous page: 1042 Shuffling Machine"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M20 30 L8 16 20 2" />
+</svg>
+</a><a href="/learn/A1064.html" class="navigation navigation-next" aria-label="Next page: 1064 Complete Binary Search Tree"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M12 30 L24 16 12 2" />
+</svg>
+</a></div>
+</div>
+</body>
+
+</html>

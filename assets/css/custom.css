@@ -1,0 +1,274 @@
+.poem-page .chapter__content {
+  text-align: center;
+}
+
+.poem-page .chapter__content p {
+  color: #666;
+  font-family: "宋体", STXihei, serif;
+  font-size: 17px !important;
+  margin: 1.2em 0;
+  line-height: 24px;
+  letter-spacing: .02em;
+}
+
+.tale-page .chapter__content p {
+  color: #666;
+  font-size: 16px !important;
+  font-family: "宋体", STXihei, serif;
+  margin: 1.2em 0;
+  line-height: 30px;
+  letter-spacing: .02em;
+}
+
+/* .tale-page .chapter__content {
+  font-size: 15px;
+  font-family: 'Kaiti SC',STXiHei,san-serif;
+} */
+/* body.tale-page {
+  background : url(/assets/img/tale-bg.jpg) no-repeat center/cover;
+} */
+
+
+.content code.highlighter-rouge {
+    color: rgba(0,80,152,0.988);
+    background: rgba(135,218,255,0.722);
+    border-radius: 4px;
+    box-shadow: 0 0 2px #87daff;
+    margin: 0 5px;
+}
+
+.content pre {
+    position: relative;
+    background-color: #282c34 !important;
+    max-width: 100%;
+    padding: .6rem 1rem .9rem;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    overflow: auto;
+}
+.content pre>code {
+    font-size: .8em;
+    font-family: Consolas;
+    background-color: transparent;
+    color: #fff;
+}
+.content code.hljs {
+  overflow-x: initial;
+}
+.content del code.highlighter-rouge {
+  background:transparent;
+/*   color: #fff; */
+  box-shadow: none;
+}
+
+.valine .vinputs-area .textarea-wrapper textarea.veditor {
+    /* background-image: url(https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/comment-bg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255,255,255,0); */
+    min-height: 10rem;
+    font-size: .875rem;
+    resize: vertical;
+    -webkit-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
+
+
+
+.userItems{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-bottom:50px}
+.userItem:hover .userItem--inner {
+  transform: translateY(-3px);
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
+}
+.userItem{width: 25%;box-sizing: border-box;margin-bottom: 40px;padding-left: 20px;padding-right: 20px;position: relative;left: 0px;top: 20px;}
+.userItem--inner{border: 1px solid rgba(0,0,0,.02);box-shadow: 0 4px 8px rgba(0,0,0,0.07);border-radius:3px;position:relative;padding-bottom:100%;height:0;transition: all 0.2s linear;}
+.userItem-content{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:absolute;top:0;bottom:0;left:0;right:0;padding:10px;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-flex-flow:column wrap;-ms-flex-flow:column wrap;flex-flow:column wrap;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center}
+.userItem-content .avatar
+{
+  /*border-radius:100%*/
+}
+.userItem-name{margin-top:8px;text-align:center}
+@media (max-width:900px){.userItem{width:33.33333%;left: 0;} .catalog-title{padding: 0 20px;} .catalog-share{padding: 0 20px;}}
+@media (max-width:600px){.userItem{width:50%;left: 0;} .catalog-title{padding: 0 20px;} .catalog-share{padding: 0 20px;}}
+
+
+
+
+
+
+
+
+
+
+.per-link-page,
+.per-guestbook-page {
+  margin: 20px auto 50px;
+}
+.per-link-page hr,
+.per-guestbook-page hr {
+  background-color: rgba(204,204,204,0.122);
+  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0.231), rgba(255,255,255,0.2) 1px, transparent 4px, transparent 5px);
+  height: 1px;
+}
+.per-link-page .instructions,
+.per-guestbook-page .instructions {
+  font-size: 13px;
+  color: #ddd;
+}
+.per-link-page .per-links {
+  padding: 0 0 0 70px;
+  margin: 0 0 80px;
+  text-align: center;
+  overflow: auto;
+  list-style-type: none;
+}
+.per-link-page .per-links .per-links-item {
+  list-style: none;
+  background: rgba(255,255,255,0);
+  float: left;
+  margin: 20px 5px;
+  width: 300px;
+  color: #f5f5f5;
+  height: 72px;
+  line-height: 15px;
+}
+.per-link-page .per-links .per-links-item {
+  transition: all 0.2s linear;
+}
+.per-link-page .per-links .per-links-item:hover {
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.06);
+  /*box-shadow: 0 2px 15px 0 rgba(249,246,246,0.1), 0 3px 10px -2px rgba(247,244,244,0.1), 0 1px 10px 0 rgba(251,248,248,0.1);*/
+  border-radius: 6px;
+}
+.per-link-page .per-links .per-links-item::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.per-link-page .per-links .per-links-item:hover::before {
+  box-shadow: 0 7px 15px rgba(246,246,246,0.133);
+}
+.per-link-page .per-links .per-links-item a {
+  display: block;
+  height: 100%;
+  color: #A9A9A9;
+  text-decoration: none;
+  border: none;
+  position: relative;
+}
+.per-link-page .per-links .per-links-title {
+  font-size: 16px;
+  line-height: 45px;
+  margin: 0 5px 0 72px;
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+.per-link-page .per-links .per-links-des {
+  font-size: 14px;
+  margin: 0 5px 0 72px;
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+.per-link-page .per-links .per-links-icon {
+  width: 72px;
+  height: 72px;
+  fill: currentColor;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  border-radius: 50%;
+}
+.per-guestbook-page .instructions.title {
+  font-size: 14px;
+  padding-top: 20px;
+}
+.per-guestbook-page .instructions .color-box {
+  display: inline-flex;
+  position: relative;
+  top: 2px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin: 0 4px;
+}
+.per-guestbook-page .instructions .color-box.white {
+  background-color: #ddd;
+}
+.per-guestbook-page .instructions .color-box.black {
+  background-color: #000;
+}
+.per-guestbook-page .instructions .color-box.blue {
+  background-color: #87daff;
+}
+.per-guestbook-page .instructions .color-box.red {
+  background-color: #ef2f11;
+}
+.per-guestbook-page .mark-main {
+  font-size: 16px;
+  font-weight: bold;
+  color: #87daff;
+}
+.per-guestbook-page .mark-secondary {
+  font-size: 14px;
+  font-weight: bold;
+  color: #87daff;
+}
+
+
+
+hr {
+  margin: 40px 0;
+  border: none;
+  background-color: #ccc;
+  background-image: repeating-linear-gradient(-45deg, #fff, #fff 2px, transparent 4px, transparent 4px);
+}
+
+.post__content.content p {
+  font-family: "Noto Serif CJK",serif;
+  font-size: 13px;
+  color: #262626;
+  line-height: 2;
+  text-rendering: optimizeLegibility;
+  text-align: justify;
+  font-style: normal;
+}
+
+.post__content.content ul:not(ol) {
+  list-style: square outside;
+}
+
+
+@font-face {
+  font-family: "Noto Serif CJK BOLD";
+  font-style: normal;
+  font-weight: 700;
+  font-display:swap;src: local("Noto Serif CJK SemiBold"),local("NotoSerifSC-SemiBold"),local("SourceHanSerifCN-SemiBold"),url(https://cdn.jsdelivr.net/gh/SpringYeh/cdn@master/mikoto/fonts/Noto_Serif_CJK_SemiBold/3500/Noto_Serif_SC.woff2) format("woff2"),url(https://cdn.jsdelivr.net/gh/SpringYeh/cdn@master/mikoto/fonts/Noto_Serif_CJK_SemiBold/3500/Noto_Serif_SC.woff) format("woff")
+}
+
+@font-face {
+  font-family: "Noto Serif CJK";
+  font-style: normal;
+  font-display:swap;src: local("Noto Serif CJK Light"),local("NotoSerifSC-Light"),local("SourceHanSerifCN-Light"),url(https://cdn.jsdelivr.net/gh/SpringYeh/cdn@master/mikoto/fonts/Noto_Serif_CJK_Light/3500/Noto_Serif_SC.woff2) format("woff2"),url(https://cdn.jsdelivr.net/gh/SpringYeh/cdn@master/mikoto/fonts/Noto_Serif_CJK_Light/3500/Noto_Serif_SC.woff) format("woff")
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>创建版本库(repository) - Wiki | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+<script src="/assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script></head>
+
+<body class="body-chapter">
+	<script>
+  if ('Wiki' == '诗') {
+    $('body').addClass("poem-page");
+    // console.log( 'Wiki' );
+  } else if ('Wiki' == '万事集') {
+    $('body').addClass("tale-page");
+    // console.log( 'Wiki' );
+  }
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+  <nav role="navigation">
+    <ul class="summary">
+      <li class="chapter ">
+        <a href="/wiki/" class="custom-link">Wiki</a>
+      </li>
+      <li class="divider"></li><li class="chapter "><a href="/wiki/git.html">廖雪峰的Git教程</a><ul class="articles"><li class="chapter ">
+            <a href="/wiki/git/1.html">安装Git</a>
+          </li><li class="chapter active">
+            <a href="/wiki/git/2.html">创建版本库(repository)</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/3.html">时光机穿梭</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/4.html">版本回退</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/5.html">工作区和暂存区</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/6.html">管理修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/7.html">撤销修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/8.html">删除文件</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/9.html">远程仓库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/10.html">添加远程库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/11.html">从远程库克隆</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/12.html">创建与合并分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/13.html">解决冲突</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/14.html">分支管理策略</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/15.html">Bug分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/16.html">Feature分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/17.html">多人协作</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/18.html">Rebase</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/19.html">使用GitHub</a>
+          </li></ul></li></ul>
+  </nav>
+</div>
+<div class="book__body">
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><a href="/archive.html" class="sidebar__toggler">
+  <span class="sidebar__toggler_top"></span>
+  <span class="sidebar__toggler_middle"></span>
+  <span class="sidebar__toggler_bottom"></span>
+</a><div class="book-header" role="navigation">
+    <a href="#" id="summaryToggler" class="summary__toggler">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="1"></circle>
+  <circle cx="19" cy="12" r="1"></circle>
+  <circle cx="5" cy="12" r="1"></circle>
+</svg>
+
+    </a>
+<!--   <h1>
+    创建版本库(repository) - Wiki
+  </h1> -->
+</div><main class="chapter__wrapper" tabindex="-1" role="main">
+        <div class="chapter__inner">
+          <article class="chapter__content content">
+            <h1 id="创建版本库repository">创建版本库(repository)</h1>
+
+<p>什么是版本库呢？版本库又名仓库，英文名<strong>repository</strong>，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</p>
+
+<p>所以，创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir </span>learngit
+<span class="nv">$ </span><span class="nb">cd </span>learngit
+<span class="nv">$ </span><span class="nb">pwd</span>
+/Users/michael/learngit
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">pwd</code>命令用于显示当前目录。在我的Mac上，这个仓库位于<code class="highlighter-rouge">/Users/michael/learngit</code>。</p>
+
+<p>第二步，通过<code class="highlighter-rouge">git init</code>命令把这个目录变成Git可以管理的仓库：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git init
+Initialized empty Git repository <span class="k">in</span> /Users/michael/learngit/.git/
+</code></pre></div></div>
+
+<p>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个<code class="highlighter-rouge">.git</code>的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。</p>
+
+<p>如果你没有看到<code class="highlighter-rouge">.git</code>目录，那是因为这个目录默认是隐藏的，用<code class="highlighter-rouge">ls -ah</code>命令就可以看见。</p>
+
+<p>也不一定必须在空目录下创建Git仓库，选择一个已经有东西的目录也是可以的。</p>
+
+<h3 id="把文件添加到版本库">把文件添加到版本库</h3>
+
+<p>首先这里再明确一下，所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。</p>
+
+<p>不幸的是，Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件。</p>
+
+<p>因为文本是有编码的，比如中文有常用的GBK编码，日文有Shift_JIS编码，如果没有历史遗留问题，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。</p>
+
+<p><em><u>使用Windows的童鞋要特别注意：</u></em></p>
+
+<p>千万不要使用Windows自带的<strong>记事本</strong>编辑任何文本文件。原因是Microsoft开发记事本的团队使用了一个非常弱智的行为来保存UTF-8编码的文件，他们自作聪明地在每个文件开头添加了0xefbbbf（十六进制）的字符，你会遇到很多不可思议的问题，比如，网页第一行可能会显示一个“?”，明明正确的程序一编译就报语法错误，等等，都是由记事本的弱智行为带来的。建议你下载<a href="https://code.visualstudio.com/">Visual Studio Code</a>代替记事本，不但功能强大，而且免费！</p>
+
+<p>言归正传，现在我们编写一个<code class="highlighter-rouge">readme.txt</code>文件，内容如下：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Git is a version control system.
+Git is free software.
+</code></pre></div></div>
+
+<p>一定要放到<code class="highlighter-rouge">learngit</code>目录下（子目录也行），因为这是一个Git仓库，放到其他地方Git再厉害也找不到这个文件。</p>
+
+<p>和把大象放到冰箱需要3步相比，把一个文件放到Git仓库只需要两步。</p>
+
+<p>第一步，用命令<code class="highlighter-rouge">git add</code>告诉Git，把文件添加到仓库：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add readme.txt
+</code></pre></div></div>
+
+<p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
+
+<p>第二步，用命令<code class="highlighter-rouge">git commit</code>告诉Git，把文件提交到仓库：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"wrote a readme file"</span>
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> eaadf4e] wrote a readme file
+ 1 file changed, 2 insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode 100644 readme.txt
+</code></pre></div></div>
+
+<p>简单解释一下<code class="highlighter-rouge">git commit</code>命令，<code class="highlighter-rouge">-m</code>后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。</p>
+
+<p>嫌麻烦不想输入<code class="highlighter-rouge">-m "xxx"</code>行不行？确实有办法可以这么干，但是强烈不建议你这么干，因为输入说明对自己对别人阅读都很重要。实在不想输入说明的童鞋请自行Google，我不告诉你这个参数。</p>
+
+<p><code class="highlighter-rouge">git commit</code>命令执行成功后会告诉你，<code class="highlighter-rouge">1 file changed</code>：1个文件被改动（我们新添加的readme.txt文件）；<code class="highlighter-rouge">2 insertions</code>：插入了两行内容（readme.txt有两行内容）。</p>
+
+<p>为什么Git添加文件需要<code class="highlighter-rouge">add</code>，<code class="highlighter-rouge">commit</code>一共两步呢？因为<code class="highlighter-rouge">commit</code>可以一次提交很多文件，所以你可以多次<code class="highlighter-rouge">add</code>不同的文件，比如：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add file1.txt
+<span class="nv">$ </span>git add file2.txt file3.txt
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"add 3 files."</span>
+</code></pre></div></div>
+
+<h3 id="疑难解答">疑难解答</h3>
+
+<p>Q：输入<code class="highlighter-rouge">git add readme.txt</code>，得到错误：<code class="highlighter-rouge">fatal: not a git repository (or any of the parent directories)</code>。</p>
+
+<p>A：Git命令必须在Git仓库目录内执行（<code class="highlighter-rouge">git init</code>除外），在仓库目录外执行是没有意义的。</p>
+
+<p>Q：输入<code class="highlighter-rouge">git add readme.txt</code>，得到错误<code class="highlighter-rouge">fatal: pathspec 'readme.txt' did not match any files</code>。</p>
+
+<p>A：添加某个文件时，该文件必须在当前目录下存在，用<code class="highlighter-rouge">ls</code>或者<code class="highlighter-rouge">dir</code>命令查看当前目录的文件，看看文件是否存在，或者是否写错了文件名。</p>
+
+<hr>
+
+<h3 id="小结">小结</h3>
+
+<p>现在总结一下今天学的两点内容：</p>
+
+<p>初始化一个Git仓库，使用<code class="highlighter-rouge">git init</code>命令。</p>
+
+<p>添加文件到Git仓库，分两步：</p>
+
+<ol>
+  <li>使用命令<code class="highlighter-rouge">git add &lt;file&gt;</code>，注意，可反复多次使用，添加多个文件；</li>
+  <li>使用命令<code class="highlighter-rouge">git commit -m &lt;message&gt;</code>，完成。</li>
+</ol>
+
+          </article>
+        </div><footer class="site-footer">
+  © 2022<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+</main>
+    </div><a href="/wiki/git/1.html" class="navigation navigation-prev"
+      aria-label="Previous page: 安装Git"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M20 30 L8 16 20 2" />
+</svg>
+</a><a href="/wiki/git/3.html" class="navigation navigation-next"
+      aria-label="Next page: 时光机穿梭"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M12 30 L24 16 12 2" />
+</svg>
+</a></div>
+</div>
+</body>
+
+</html>

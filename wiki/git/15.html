@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>Bug分支 - Wiki | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+<script src="/assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script></head>
+
+<body class="body-chapter">
+	<script>
+  if ('Wiki' == '诗') {
+    $('body').addClass("poem-page");
+    // console.log( 'Wiki' );
+  } else if ('Wiki' == '万事集') {
+    $('body').addClass("tale-page");
+    // console.log( 'Wiki' );
+  }
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+  <nav role="navigation">
+    <ul class="summary">
+      <li class="chapter ">
+        <a href="/wiki/" class="custom-link">Wiki</a>
+      </li>
+      <li class="divider"></li><li class="chapter "><a href="/wiki/git.html">廖雪峰的Git教程</a><ul class="articles"><li class="chapter ">
+            <a href="/wiki/git/1.html">安装Git</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/2.html">创建版本库(repository)</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/3.html">时光机穿梭</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/4.html">版本回退</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/5.html">工作区和暂存区</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/6.html">管理修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/7.html">撤销修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/8.html">删除文件</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/9.html">远程仓库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/10.html">添加远程库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/11.html">从远程库克隆</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/12.html">创建与合并分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/13.html">解决冲突</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/14.html">分支管理策略</a>
+          </li><li class="chapter active">
+            <a href="/wiki/git/15.html">Bug分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/16.html">Feature分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/17.html">多人协作</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/18.html">Rebase</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/19.html">使用GitHub</a>
+          </li></ul></li></ul>
+  </nav>
+</div>
+<div class="book__body">
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><a href="/archive.html" class="sidebar__toggler">
+  <span class="sidebar__toggler_top"></span>
+  <span class="sidebar__toggler_middle"></span>
+  <span class="sidebar__toggler_bottom"></span>
+</a><div class="book-header" role="navigation">
+    <a href="#" id="summaryToggler" class="summary__toggler">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="1"></circle>
+  <circle cx="19" cy="12" r="1"></circle>
+  <circle cx="5" cy="12" r="1"></circle>
+</svg>
+
+    </a>
+<!--   <h1>
+    Bug分支 - Wiki
+  </h1> -->
+</div><main class="chapter__wrapper" tabindex="-1" role="main">
+        <div class="chapter__inner">
+          <article class="chapter__content content">
+            <h1 id="bug分支">Bug分支</h1>
+
+<p>软件开发中，bug就像家常便饭一样。有了bug就需要修复，在Git中，由于分支是如此的强大，所以，每个bug都可以通过一个新的临时分支来修复，修复后，合并分支，然后将临时分支删除。</p>
+
+<p>当你接到一个修复一个代号101的bug的任务时，很自然地，你想创建一个分支<code class="highlighter-rouge">issue-101</code>来修复它，但是，等等，当前正在<code class="highlighter-rouge">dev</code>上进行的工作还没有提交：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch dev
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+	new file:   hello.py
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   readme.txt
+</code></pre></div></div>
+
+<p>并不是你不想提交，而是工作只进行到一半，还没法提交，预计完成还需1天时间。但是，必须在两个小时内修复该bug，怎么办？</p>
+
+<p>幸好，Git还提供了一个<code class="highlighter-rouge">stash</code>功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git stash
+Saved working directory and index state WIP on dev: f52c633 add merge
+</code></pre></div></div>
+
+<p>现在，用<code class="highlighter-rouge">git status</code>查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
+
+<p>首先确定要在哪个分支上修复bug，假定需要在<code class="highlighter-rouge">master</code>分支上修复，就从<code class="highlighter-rouge">master</code>创建临时分支：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+$ git checkout -b issue-101
+Switched to a new branch 'issue-101'
+</code></pre></div></div>
+
+<p>现在修复bug，需要把“Git is free software …”改为“Git is a free software …”，然后提交：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git add readme.txt 
+$ git commit -m "fix bug 101"
+[issue-101 4c805e2] fix bug 101
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre></div></div>
+
+<p>修复完成后，切换到<code class="highlighter-rouge">master</code>分支，并完成合并，最后删除<code class="highlighter-rouge">issue-101</code>分支：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git switch master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+$ git merge --no-ff -m "merged bug fix 101" issue-101
+Merge made by the 'recursive' strategy.
+ readme.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre></div></div>
+
+<p>太棒了，原计划两个小时的bug修复只花了5分钟！现在，是时候接着回到<code class="highlighter-rouge">dev</code>分支干活了！</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git switch dev
+Switched to branch 'dev'
+
+$ git status
+On branch dev
+nothing to commit, working tree clean
+</code></pre></div></div>
+
+<p>工作区是干净的，刚才的工作现场存到哪去了？用<code class="highlighter-rouge">git stash list</code>命令看看：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git stash list
+stash@{0}: WIP on dev: f52c633 add merge
+</code></pre></div></div>
+
+<p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
+
+<p>一是用<code class="highlighter-rouge">git stash apply</code>恢复，但是恢复后，stash内容并不删除，你需要用<code class="highlighter-rouge">git stash drop</code>来删除；</p>
+
+<p>另一种方式是用<code class="highlighter-rouge">git stash pop</code>，恢复的同时把stash内容也删了：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git stash pop
+On branch dev
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+	new file:   hello.py
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   readme.txt
+
+Dropped refs/stash@{0} (5d677e2ee266f39ea296182fb2354265b91b3b2a)
+</code></pre></div></div>
+
+<p>再用<code class="highlighter-rouge">git stash list</code>查看，就看不到任何stash内容了：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git stash list
+</code></pre></div></div>
+
+<p>你可以多次stash，恢复的时候，先用<code class="highlighter-rouge">git stash list</code>查看，然后恢复指定的stash，用命令：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git stash apply stash@{0}
+</code></pre></div></div>
+
+<p>在master分支上修复了bug后，我们要想一想，dev分支是早期从master分支分出来的，所以，这个bug其实在当前dev分支上也存在。</p>
+
+<p>那怎么在dev分支上修复同样的bug？重复操作一次，提交不就行了？</p>
+
+<p>有木有更简单的方法？</p>
+
+<p>有！</p>
+
+<p>同样的bug，要在dev上修复，我们只需要把<code class="highlighter-rouge">4c805e2 fix bug 101</code>这个提交所做的修改“复制”到dev分支。注意：我们只想复制<code class="highlighter-rouge">4c805e2 fix bug 101</code>这个提交所做的修改，并不是把整个master分支merge过来。</p>
+
+<p>为了方便操作，Git专门提供了一个<code class="highlighter-rouge">cherry-pick</code>命令，让我们能复制一个特定的提交到当前分支：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git branch
+* dev
+  master
+$ git cherry-pick 4c805e2
+[master 1d4b803] fix bug 101
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre></div></div>
+
+<p>Git自动给dev分支做了一次提交，注意这次提交的commit是<code class="highlighter-rouge">1d4b803</code>，它并不同于master的<code class="highlighter-rouge">4c805e2</code>，因为这两个commit只是改动相同，但确实是两个不同的commit。用<code class="highlighter-rouge">git cherry-pick</code>，我们就不需要在dev分支上手动再把修bug的过程重复一遍。</p>
+
+<p>有些聪明的童鞋会想了，既然可以在master分支上修复bug后，在dev分支上可以“重放”这个修复过程，那么直接在dev分支上修复bug，然后在master分支上“重放”行不行？当然可以，不过你仍然需要<code class="highlighter-rouge">git stash</code>命令保存现场，才能从dev分支切换到master分支。</p>
+
+<hr>
+
+<h3 id="小结">小结</h3>
+
+<p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+
+<p>当手头工作没有完成时，先把工作现场<code class="highlighter-rouge">git stash</code>一下，然后去修复bug，修复后，再<code class="highlighter-rouge">git stash pop</code>，回到工作现场；</p>
+
+<p>在master分支上修复的bug，想要合并到当前dev分支，可以用<code class="highlighter-rouge">git cherry-pick &lt;commit&gt;</code>命令，把bug提交的修改“复制”到当前分支，避免重复劳动。</p>
+
+          </article>
+        </div><footer class="site-footer">
+  © 2022<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+</main>
+    </div><a href="/wiki/git/14.html" class="navigation navigation-prev"
+      aria-label="Previous page: 分支管理策略"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M20 30 L8 16 20 2" />
+</svg>
+</a><a href="/wiki/git/16.html" class="navigation navigation-next"
+      aria-label="Next page: Feature分支"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M12 30 L24 16 12 2" />
+</svg>
+</a></div>
+</div>
+</body>
+
+</html>

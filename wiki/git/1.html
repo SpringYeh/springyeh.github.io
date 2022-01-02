@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>安装Git - Wiki | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+<script src="/assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script></head>
+
+<body class="body-chapter">
+	<script>
+  if ('Wiki' == '诗') {
+    $('body').addClass("poem-page");
+    // console.log( 'Wiki' );
+  } else if ('Wiki' == '万事集') {
+    $('body').addClass("tale-page");
+    // console.log( 'Wiki' );
+  }
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+  <nav role="navigation">
+    <ul class="summary">
+      <li class="chapter ">
+        <a href="/wiki/" class="custom-link">Wiki</a>
+      </li>
+      <li class="divider"></li><li class="chapter "><a href="/wiki/git.html">廖雪峰的Git教程</a><ul class="articles"><li class="chapter active">
+            <a href="/wiki/git/1.html">安装Git</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/2.html">创建版本库(repository)</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/3.html">时光机穿梭</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/4.html">版本回退</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/5.html">工作区和暂存区</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/6.html">管理修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/7.html">撤销修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/8.html">删除文件</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/9.html">远程仓库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/10.html">添加远程库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/11.html">从远程库克隆</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/12.html">创建与合并分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/13.html">解决冲突</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/14.html">分支管理策略</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/15.html">Bug分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/16.html">Feature分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/17.html">多人协作</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/18.html">Rebase</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/19.html">使用GitHub</a>
+          </li></ul></li></ul>
+  </nav>
+</div>
+<div class="book__body">
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><a href="/archive.html" class="sidebar__toggler">
+  <span class="sidebar__toggler_top"></span>
+  <span class="sidebar__toggler_middle"></span>
+  <span class="sidebar__toggler_bottom"></span>
+</a><div class="book-header" role="navigation">
+    <a href="#" id="summaryToggler" class="summary__toggler">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="1"></circle>
+  <circle cx="19" cy="12" r="1"></circle>
+  <circle cx="5" cy="12" r="1"></circle>
+</svg>
+
+    </a>
+<!--   <h1>
+    安装Git - Wiki
+  </h1> -->
+</div><main class="chapter__wrapper" tabindex="-1" role="main">
+        <div class="chapter__inner">
+          <article class="chapter__content content">
+            <h1 id="安装git">安装Git</h1>
+
+<p>要使用Git，第一步当然是安装Git了。根据你当前使用的平台来阅读下面的文字：</p>
+
+<h3 id="在linux上安装git">在Linux上安装Git</h3>
+
+<p>首先，你可以试着输入<code class="highlighter-rouge">git</code>，看看系统有没有安装Git：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git
+The program <span class="s1">'git'</span> is currently not installed. You can <span class="nb">install </span>it by typing:
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>git
+</code></pre></div></div>
+
+<p>像上面的命令，有很多Linux会友好地告诉你Git没有安装，还会告诉你如何安装Git。</p>
+
+<p>如果你碰巧用Debian或Ubuntu Linux，通过一条<code class="highlighter-rouge">sudo apt-get install git</code>就可以直接完成Git的安装，非常简单。</p>
+
+<p>老一点的Debian或Ubuntu Linux，要把命令改为<code class="highlighter-rouge">sudo apt-get install git-core</code>，因为以前有个软件也叫GIT（GNU Interactive Tools），结果Git就只能叫<code class="highlighter-rouge">git-core</code>了。由于Git名气实在太大，后来就把GNU Interactive Tools改成<code class="highlighter-rouge">gnuit</code>，<code class="highlighter-rouge">git-core</code>正式改为<code class="highlighter-rouge">git</code>。</p>
+
+<p>如果是其他Linux版本，可以直接通过源码安装。先从Git官网下载源码，然后解压，依次输入：<code class="highlighter-rouge">./config</code>，<code class="highlighter-rouge">make</code>，<code class="highlighter-rouge">sudo make install</code>这几个命令安装就好了。</p>
+
+<h3 id="在mac-os-x上安装git">在Mac OS X上安装Git</h3>
+
+<p>如果你正在使用Mac做开发，有两种安装Git的方法。</p>
+
+<p>一是安装homebrew，然后通过homebrew安装Git，具体方法请参考homebrew的文档：http://brew.sh/。</p>
+
+<p>第二种，就是直接从AppStore安装Xcode，Xcode集成了Git，不过默认没有安装，你需要运行Xcode，选择菜单“Xcode”-&gt;“Preferences”，在弹出窗口中找到“Downloads”，选择“Command Line Tools”，点“Install”就可以完成安装了。Xcode是Apple官方IDE，功能非常强大，是开发Mac和iOS App的必选装备，而且是免费的！但是它太大了，没装的就别为了个Git装这么个庞然大物了。</p>
+
+<h3 id="在windows上安装git">在Windows上安装Git</h3>
+
+<p>在Windows上使用Git，可以从Git官网直接<a href="https://git-scm.com/downloads">下载安装程序</a>，然后按默认选项安装即可。</p>
+
+<p>安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！</p>
+
+<p>安装完成后，还需要最后一步设置，在命令行输入：</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"email@example.com"</span>
+</code></pre></div></div>
+
+<p>因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。你也许会担心，如果有人故意冒充别人怎么办？这个不必担心，首先我们相信大家都是善良无知的群众，其次，真的有冒充的也是有办法可查的。</p>
+
+<p>注意<code class="highlighter-rouge">git config</code>命令的<code class="highlighter-rouge">--global</code>参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。</p>
+
+          </article>
+        </div><footer class="site-footer">
+  © 2022<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+</main>
+    </div><a href="/wiki/git.html" class="navigation navigation-prev"
+      aria-label="Previous page: 廖雪峰的Git教程"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M20 30 L8 16 20 2" />
+</svg>
+</a><a href="/wiki/git/2.html" class="navigation navigation-next"
+      aria-label="Next page: 创建版本库(repository)"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M12 30 L24 16 12 2" />
+</svg>
+</a></div>
+</div>
+</body>
+
+</html>

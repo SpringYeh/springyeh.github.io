@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>删除文件 - Wiki | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+<script src="/assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script></head>
+
+<body class="body-chapter">
+	<script>
+  if ('Wiki' == '诗') {
+    $('body').addClass("poem-page");
+    // console.log( 'Wiki' );
+  } else if ('Wiki' == '万事集') {
+    $('body').addClass("tale-page");
+    // console.log( 'Wiki' );
+  }
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+  <nav role="navigation">
+    <ul class="summary">
+      <li class="chapter ">
+        <a href="/wiki/" class="custom-link">Wiki</a>
+      </li>
+      <li class="divider"></li><li class="chapter "><a href="/wiki/git.html">廖雪峰的Git教程</a><ul class="articles"><li class="chapter ">
+            <a href="/wiki/git/1.html">安装Git</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/2.html">创建版本库(repository)</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/3.html">时光机穿梭</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/4.html">版本回退</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/5.html">工作区和暂存区</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/6.html">管理修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/7.html">撤销修改</a>
+          </li><li class="chapter active">
+            <a href="/wiki/git/8.html">删除文件</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/9.html">远程仓库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/10.html">添加远程库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/11.html">从远程库克隆</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/12.html">创建与合并分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/13.html">解决冲突</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/14.html">分支管理策略</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/15.html">Bug分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/16.html">Feature分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/17.html">多人协作</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/18.html">Rebase</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/19.html">使用GitHub</a>
+          </li></ul></li></ul>
+  </nav>
+</div>
+<div class="book__body">
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><a href="/archive.html" class="sidebar__toggler">
+  <span class="sidebar__toggler_top"></span>
+  <span class="sidebar__toggler_middle"></span>
+  <span class="sidebar__toggler_bottom"></span>
+</a><div class="book-header" role="navigation">
+    <a href="#" id="summaryToggler" class="summary__toggler">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="1"></circle>
+  <circle cx="19" cy="12" r="1"></circle>
+  <circle cx="5" cy="12" r="1"></circle>
+</svg>
+
+    </a>
+<!--   <h1>
+    删除文件 - Wiki
+  </h1> -->
+</div><main class="chapter__wrapper" tabindex="-1" role="main">
+        <div class="chapter__inner">
+          <article class="chapter__content content">
+            <h1 id="删除文件">删除文件</h1>
+
+<p>在Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件<code class="highlighter-rouge">test.txt</code>到Git并且提交：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git add test.txt
+
+$ git commit -m "add test.txt"
+[master b84166e] add test.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+</code></pre></div></div>
+
+<p>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用<code class="highlighter-rouge">rm</code>命令删了：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rm test.txt
+</code></pre></div></div>
+
+<p>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，<code class="highlighter-rouge">git status</code>命令会立刻告诉你哪些文件被删除了：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	deleted:    test.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre></div></div>
+
+<p>现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令<code class="highlighter-rouge">git rm</code>删掉，并且<code class="highlighter-rouge">git commit</code>：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git rm test.txt
+rm 'test.txt'
+
+$ git commit -m "remove test.txt"
+[master d46f35e] remove test.txt
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 test.txt
+</code></pre></div></div>
+
+<p>现在，文件就从版本库中被删除了。</p>
+
+<blockquote>
+  <p>小提示：先手动删除文件，然后使用git rm <file>和git add<file>效果是一样的。</file></file></p>
+</blockquote>
+
+<p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout -- test.txt
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+
+<blockquote>
+  <p>注意：从来没有被添加到版本库就被删除的文件，是无法恢复的！</p>
+</blockquote>
+
+<hr>
+
+<h3 id="小结">小结</h3>
+
+<p>命令<code class="highlighter-rouge">git rm</code>用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失<strong>最近一次提交后你修改的内容</strong>。</p>
+
+          </article>
+        </div><footer class="site-footer">
+  © 2022<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+</main>
+    </div><a href="/wiki/git/7.html" class="navigation navigation-prev"
+      aria-label="Previous page: 撤销修改"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M20 30 L8 16 20 2" />
+</svg>
+</a><a href="/wiki/git/9.html" class="navigation navigation-next"
+      aria-label="Next page: 远程仓库"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M12 30 L24 16 12 2" />
+</svg>
+</a></div>
+</div>
+</body>
+
+</html>

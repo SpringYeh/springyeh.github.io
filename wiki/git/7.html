@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>撤销修改 - Wiki | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+<script src="/assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script></head>
+
+<body class="body-chapter">
+	<script>
+  if ('Wiki' == '诗') {
+    $('body').addClass("poem-page");
+    // console.log( 'Wiki' );
+  } else if ('Wiki' == '万事集') {
+    $('body').addClass("tale-page");
+    // console.log( 'Wiki' );
+  }
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+  <nav role="navigation">
+    <ul class="summary">
+      <li class="chapter ">
+        <a href="/wiki/" class="custom-link">Wiki</a>
+      </li>
+      <li class="divider"></li><li class="chapter "><a href="/wiki/git.html">廖雪峰的Git教程</a><ul class="articles"><li class="chapter ">
+            <a href="/wiki/git/1.html">安装Git</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/2.html">创建版本库(repository)</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/3.html">时光机穿梭</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/4.html">版本回退</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/5.html">工作区和暂存区</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/6.html">管理修改</a>
+          </li><li class="chapter active">
+            <a href="/wiki/git/7.html">撤销修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/8.html">删除文件</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/9.html">远程仓库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/10.html">添加远程库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/11.html">从远程库克隆</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/12.html">创建与合并分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/13.html">解决冲突</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/14.html">分支管理策略</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/15.html">Bug分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/16.html">Feature分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/17.html">多人协作</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/18.html">Rebase</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/19.html">使用GitHub</a>
+          </li></ul></li></ul>
+  </nav>
+</div>
+<div class="book__body">
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><a href="/archive.html" class="sidebar__toggler">
+  <span class="sidebar__toggler_top"></span>
+  <span class="sidebar__toggler_middle"></span>
+  <span class="sidebar__toggler_bottom"></span>
+</a><div class="book-header" role="navigation">
+    <a href="#" id="summaryToggler" class="summary__toggler">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="1"></circle>
+  <circle cx="19" cy="12" r="1"></circle>
+  <circle cx="5" cy="12" r="1"></circle>
+</svg>
+
+    </a>
+<!--   <h1>
+    撤销修改 - Wiki
+  </h1> -->
+</div><main class="chapter__wrapper" tabindex="-1" role="main">
+        <div class="chapter__inner">
+          <article class="chapter__content content">
+            <h1 id="撤销修改">撤销修改</h1>
+
+<p>自然，你是不会犯错的。不过现在是凌晨两点，你正在赶一份工作报告，你在<code class="highlighter-rouge">readme.txt</code>中添加了一行：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of files.
+My stupid boss still prefers SVN.
+</code></pre></div></div>
+
+<p>在你准备提交前，一杯咖啡起了作用，你猛然发现了<code class="highlighter-rouge">stupid boss</code>可能会让你丢掉这个月的奖金！</p>
+
+<p>既然错误发现得很及时，就可以很容易地纠正它。你可以删掉最后一行，手动把文件恢复到上一个版本的状态。如果用<code class="highlighter-rouge">git status</code>查看一下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre></div></div>
+
+<p>你可以发现，Git会告诉你，<code class="highlighter-rouge">git checkout -- file</code>可以丢弃工作区的修改：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout -- readme.txt
+</code></pre></div></div>
+
+<p>命令<code class="highlighter-rouge">git checkout -- readme.txt</code>意思就是，把<code class="highlighter-rouge">readme.txt</code>文件在工作区的修改全部撤销，这里有两种情况：</p>
+
+<p>一种是<code class="highlighter-rouge">readme.txt</code>自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
+
+<p>一种是<code class="highlighter-rouge">readme.txt</code>已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
+
+<p>总之，就是让这个文件回到最近一次<code class="highlighter-rouge">git commit</code>或<code class="highlighter-rouge">git add</code>时的状态。</p>
+
+<p>现在，看看<code class="highlighter-rouge">readme.txt</code>的文件内容：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of files.
+</code></pre></div></div>
+
+<p>文件内容果然复原了。</p>
+
+<p><code class="highlighter-rouge">git checkout -- file</code>命令中的<code class="highlighter-rouge">--</code>很重要，没有<code class="highlighter-rouge">--</code>，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到<code class="highlighter-rouge">git checkout</code>命令。</p>
+
+<p>现在假定是凌晨3点，你不但写了一些胡话，还<code class="highlighter-rouge">git add</code>到暂存区了：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of files.
+My stupid boss still prefers SVN.
+
+$ git add readme.txt
+</code></pre></div></div>
+
+<p>庆幸的是，在<code class="highlighter-rouge">commit</code>之前，你发现了这个问题。用<code class="highlighter-rouge">git status</code>查看一下，修改只是添加到了暂存区，还没有提交：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+	modified:   readme.txt
+</code></pre></div></div>
+
+<p>Git同样告诉我们，用命令<code class="highlighter-rouge">git reset HEAD &lt;file&gt;</code>可以把暂存区的修改撤销掉（unstage），重新放回工作区：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git reset HEAD readme.txt
+Unstaged changes after reset:
+M	readme.txt
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">git reset</code>命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用<code class="highlighter-rouge">HEAD</code>时，表示最新的版本。</p>
+
+<p>再用<code class="highlighter-rouge">git status</code>查看一下，现在暂存区是干净的，工作区有修改：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   readme.txt
+</code></pre></div></div>
+
+<p>还记得如何丢弃工作区的修改吗？</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout -- readme.txt
+
+$ git status
+On branch master
+nothing to commit, working tree clean
+</code></pre></div></div>
+
+<p>整个世界终于清静了！</p>
+
+<p>现在，假设你不但改错了东西，还从暂存区提交到了版本库，怎么办呢？还记得<a href="">版本回退</a>一节吗？可以回退到上一个版本。不过，这是有条件的，就是你还没有把自己的本地版本库推送到远程。还记得Git是分布式版本控制系统吗？我们后面会讲到远程版本库，一旦你把<code class="highlighter-rouge">stupid boss</code>提交推送到远程版本库，你就真的惨了……</p>
+
+<hr>
+
+<h3 id="小结">小结</h3>
+
+<p>又到了小结时间。</p>
+
+<p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<code class="highlighter-rouge">git checkout -- file</code>。</p>
+
+<p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令<code class="highlighter-rouge">git reset HEAD &lt;file&gt;</code>，就回到了场景1，第二步按场景1操作。</p>
+
+<p>场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考<a href="">版本回退</a>一节，不过前提是没有推送到远程库。</p>
+
+          </article>
+        </div><footer class="site-footer">
+  © 2022<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+</main>
+    </div><a href="/wiki/git/6.html" class="navigation navigation-prev"
+      aria-label="Previous page: 管理修改"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M20 30 L8 16 20 2" />
+</svg>
+</a><a href="/wiki/git/8.html" class="navigation navigation-next"
+      aria-label="Next page: 删除文件"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M12 30 L24 16 12 2" />
+</svg>
+</a></div>
+</div>
+</body>
+
+</html>

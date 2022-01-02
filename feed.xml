@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-05-16T21:39:01+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">一叶知秋</title><subtitle>岂能尽如人意，但求无愧于心。</subtitle><author><name>一叶知秋</name></author><entry><title type="html">静态博客何去何从</title><link href="http://localhost:4000/blog/static-blog.html" rel="alternate" type="text/html" title="静态博客何去何从" /><published>2020-04-29T09:38:00+08:00</published><updated>2020-04-29T09:38:00+08:00</updated><id>http://localhost:4000/blog/static-blog</id><content type="html" xml:base="http://localhost:4000/blog/static-blog.html">&lt;p&gt;在捣鼓博客这一块，我的宗旨是能免费就用免费的，最初同大家一样，折腾HEXO时就是托管在GitHub Pages，可惜服务器在美国，国内访问速度太慢了。后来发现了国内最著名两大代码托管平台：码云和coding，两者都试了。coding综合最好，提供免费的推送部署、自定义域名以及HTTPS，GitHub有的优点他都有，而且国内速度很快，但却有个致命缺陷——时不时宕机，这不，两天了，我部署在coding的网站都打不开。码云的效果更好，至今从未宕机过，它的缺点是coding免费提供的那三个我十分需要的功能，它都不提供，只有购买￥99/年的Pro版才有。所以就很烦，他们二者要是能互补一下就好了。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-02T17:59:34+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">一叶知秋</title><subtitle>岂能尽如人意，但求无愧于心。</subtitle><author><name>一叶知秋</name></author><entry><title type="html">静态博客何去何从</title><link href="http://localhost:4000/blog/static-blog.html" rel="alternate" type="text/html" title="静态博客何去何从" /><published>2020-04-29T09:38:00+08:00</published><updated>2020-04-29T09:38:00+08:00</updated><id>http://localhost:4000/blog/static-blog</id><content type="html" xml:base="http://localhost:4000/blog/static-blog.html">&lt;p&gt;在捣鼓博客这一块，我的宗旨是能免费就用免费的，最初同大家一样，折腾HEXO时就是托管在GitHub Pages，可惜服务器在美国，国内访问速度太慢了。后来发现了国内最著名两大代码托管平台：码云和coding，两者都试了。coding综合最好，提供免费的推送部署、自定义域名以及HTTPS，GitHub有的优点他都有，而且国内速度很快，但却有个致命缺陷——时不时宕机，这不，两天了，我部署在coding的网站都打不开。码云的效果更好，至今从未宕机过，它的缺点是coding免费提供的那三个我十分需要的功能，它都不提供，只有购买￥99/年的Pro版才有。所以就很烦，他们二者要是能互补一下就好了。&lt;/p&gt;
 
 &lt;p&gt;昨晚百度了一下，有人还推荐了百度、华为、阿里的代码托管，可惜我试了试发现不知道是啥玩意，百度那个云好不容易把认证通过后，建了项目，里面空白一片，什么按钮都没有，像是没做好就放出来了一样；阿里云代码托管平台从阿里云首页进去我都没找到，还是靠别人链接进的，UI也与首页大不相同，好不容易把代码上传上去，发现找不到Pages的功能，我怀疑这个站点早被阿里放弃了。&lt;/p&gt;
 
@@ -10,70 +10,7 @@
 &lt;h6 id=&quot;方案二-云平台对象存储&quot;&gt;方案二 云平台对象存储&lt;/h6&gt;
 &lt;p&gt;国内最大的两家云服务平台当属腾讯云和阿里云，他们各自的对象存储服务分别叫COS和OSS。昨晚已初步尝试了阿里云OSS，新建一个Bucket，地点选香港（如果选中国内地地区，则后面绑定自定义域名时须是备案的，否则不可用，腾讯COS也是如此），然后将HEXO生成的public文件夹整个丢进这个存储桶，并在OSS基础设置-静态页面那里设置好选项，绑定好域名，就可正常访问，速度感人。&lt;/p&gt;
 
-&lt;p&gt;目前我觉得最好的方案就是方案二了，如果每天访问量不大，用这个足够了，一年可能一块钱都要不到。&lt;/p&gt;</content><author><name>一叶知秋</name></author><summary type="html">在捣鼓博客这一块，我的宗旨是能免费就用免费的，最初同大家一样，折腾HEXO时就是托管在GitHub Pages，可惜服务器在美国，国内访问速度太慢了。后来发现了国内最著名两大代码托管平台：码云和coding，两者都试了。coding综合最好，提供免费的推送部署、自定义域名以及HTTPS，GitHub有的优点他都有，而且国内速度很快，但却有个致命缺陷——时不时宕机，这不，两天了，我部署在coding的网站都打不开。码云的效果更好，至今从未宕机过，它的缺点是coding免费提供的那三个我十分需要的功能，它都不提供，只有购买￥99/年的Pro版才有。所以就很烦，他们二者要是能互补一下就好了。 昨晚百度了一下，有人还推荐了百度、华为、阿里的代码托管，可惜我试了试发现不知道是啥玩意，百度那个云好不容易把认证通过后，建了项目，里面空白一片，什么按钮都没有，像是没做好就放出来了一样；阿里云代码托管平台从阿里云首页进去我都没找到，还是靠别人链接进的，UI也与首页大不相同，好不容易把代码上传上去，发现找不到Pages的功能，我怀疑这个站点早被阿里放弃了。 最后，在VE2X论坛，发现了几种从未接触的方案。 方案一 Netlify 加速 GitHub Pages 网上都说，GitHubPages 访问太慢，用Netlify就能解决，我也纳闷呢，两个都是美国网站，为什么能加速。昨晚我也试了，相比之前的纯GitHub，这玩意的确速度快一点，但是依然很慢啊，远没有网上说得那么好，算是一个相对操作较为简单综合来看最折中的办法了，前面提的那些基本功能都是免费的，可以忍受稍慢一些速度的可以采用此方法。 方案二 云平台对象存储 国内最大的两家云服务平台当属腾讯云和阿里云，他们各自的对象存储服务分别叫COS和OSS。昨晚已初步尝试了阿里云OSS，新建一个Bucket，地点选香港（如果选中国内地地区，则后面绑定自定义域名时须是备案的，否则不可用，腾讯COS也是如此），然后将HEXO生成的public文件夹整个丢进这个存储桶，并在OSS基础设置-静态页面那里设置好选项，绑定好域名，就可正常访问，速度感人。 目前我觉得最好的方案就是方案二了，如果每天访问量不大，用这个足够了，一年可能一块钱都要不到。</summary></entry><entry><title type="html">敢叫日月换新天</title><link href="http://localhost:4000/blog/ChairmanMao-birthday.html" rel="alternate" type="text/html" title="敢叫日月换新天" /><published>2019-12-26T00:00:00+08:00</published><updated>2019-12-26T00:00:00+08:00</updated><id>http://localhost:4000/blog/ChairmanMao-birthday</id><content type="html" xml:base="http://localhost:4000/blog/ChairmanMao-birthday.html">&lt;style&gt;
-	#mzd {
-		/*text-align: center;*/
-		padding: 0 10px;
-	}
-	#mzd img {
-		border: 1px solid rgba(0,0,0,.2);
-    	box-shadow: 0 4px 8px rgba(0,0,0,0.7);
-		border-radius: 5px;
-		margin-bottom: 20px;
-		max-height: 90vh;
-	}
-	.p {
-		text-align: center;
-		margin-top: 70px;
-	}
-&lt;/style&gt;
-
-&lt;div id=&quot;mzd&quot;&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd1.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd2.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd3.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd4.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd5.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd6.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd7.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd8.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd9.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd10.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd11.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd12.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd13.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd14.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd15.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd16.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd17.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd18.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd19.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd20.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd21.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd22.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd23.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd24.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd25.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd26.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd27.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd28.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd29.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd30.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd31.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd32.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd33.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd34.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd35.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd36.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd37.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd38.jpg&quot; /&gt;
-	&lt;img src=&quot;https://cdn.jsdelivr.net/gh/SpringYeh/cdn/article/mzd/mzd39.jpg&quot; /&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;p&quot;&gt;
-	&lt;p&gt;12月26日，是中国的圣诞节。&lt;/p&gt;
-	&lt;p&gt;天不生润之，万古如长夜。&lt;/p&gt;
-&lt;/div&gt;</content><author><name>一叶知秋</name></author><summary type="html">12月26日，是中国的圣诞节。 天不生润之，万古如长夜。</summary></entry><entry><title type="html">为博客添加评论系统</title><link href="http://localhost:4000/blog/blog-comment.html" rel="alternate" type="text/html" title="为博客添加评论系统" /><published>2019-07-21T17:23:00+08:00</published><updated>2019-07-21T17:23:00+08:00</updated><id>http://localhost:4000/blog/blog-comment</id><content type="html" xml:base="http://localhost:4000/blog/blog-comment.html">&lt;p&gt;我目前接触过的静态博客平台大部分主题都会有评论系统，即使没有，也可以自己按意愿添加，这种教程网上有很多。最终该博客我改成用valine，一想到后面几天会发生的事，我又改成了gittalk。不得不说还是valine好一点，只需一个邮箱就能对话，而gittalk还需要GitHub账号，然而不是每个人都玩GitHub。下面简要记录一下这两种评论系统我的配置过程。&lt;/p&gt;
+&lt;p&gt;目前我觉得最好的方案就是方案二了，如果每天访问量不大，用这个足够了，一年可能一块钱都要不到。&lt;/p&gt;</content><author><name>一叶知秋</name></author><summary type="html">在捣鼓博客这一块，我的宗旨是能免费就用免费的，最初同大家一样，折腾HEXO时就是托管在GitHub Pages，可惜服务器在美国，国内访问速度太慢了。后来发现了国内最著名两大代码托管平台：码云和coding，两者都试了。coding综合最好，提供免费的推送部署、自定义域名以及HTTPS，GitHub有的优点他都有，而且国内速度很快，但却有个致命缺陷——时不时宕机，这不，两天了，我部署在coding的网站都打不开。码云的效果更好，至今从未宕机过，它的缺点是coding免费提供的那三个我十分需要的功能，它都不提供，只有购买￥99/年的Pro版才有。所以就很烦，他们二者要是能互补一下就好了。 昨晚百度了一下，有人还推荐了百度、华为、阿里的代码托管，可惜我试了试发现不知道是啥玩意，百度那个云好不容易把认证通过后，建了项目，里面空白一片，什么按钮都没有，像是没做好就放出来了一样；阿里云代码托管平台从阿里云首页进去我都没找到，还是靠别人链接进的，UI也与首页大不相同，好不容易把代码上传上去，发现找不到Pages的功能，我怀疑这个站点早被阿里放弃了。 最后，在VE2X论坛，发现了几种从未接触的方案。 方案一 Netlify 加速 GitHub Pages 网上都说，GitHubPages 访问太慢，用Netlify就能解决，我也纳闷呢，两个都是美国网站，为什么能加速。昨晚我也试了，相比之前的纯GitHub，这玩意的确速度快一点，但是依然很慢啊，远没有网上说得那么好，算是一个相对操作较为简单综合来看最折中的办法了，前面提的那些基本功能都是免费的，可以忍受稍慢一些速度的可以采用此方法。 方案二 云平台对象存储 国内最大的两家云服务平台当属腾讯云和阿里云，他们各自的对象存储服务分别叫COS和OSS。昨晚已初步尝试了阿里云OSS，新建一个Bucket，地点选香港（如果选中国内地地区，则后面绑定自定义域名时须是备案的，否则不可用，腾讯COS也是如此），然后将HEXO生成的public文件夹整个丢进这个存储桶，并在OSS基础设置-静态页面那里设置好选项，绑定好域名，就可正常访问，速度感人。 目前我觉得最好的方案就是方案二了，如果每天访问量不大，用这个足够了，一年可能一块钱都要不到。</summary></entry><entry><title type="html">为博客添加评论系统</title><link href="http://localhost:4000/blog/blog-comment.html" rel="alternate" type="text/html" title="为博客添加评论系统" /><published>2019-07-21T17:23:00+08:00</published><updated>2019-07-21T17:23:00+08:00</updated><id>http://localhost:4000/blog/blog-comment</id><content type="html" xml:base="http://localhost:4000/blog/blog-comment.html">&lt;p&gt;我目前接触过的静态博客平台大部分主题都会有评论系统，即使没有，也可以自己按意愿添加，这种教程网上有很多。最终该博客我改成用valine，一想到后面几天会发生的事，我又改成了gittalk。不得不说还是valine好一点，只需一个邮箱就能对话，而gittalk还需要GitHub账号，然而不是每个人都玩GitHub。下面简要记录一下这两种评论系统我的配置过程。&lt;/p&gt;
 
 &lt;h2 id=&quot;valine&quot;&gt;valine&lt;/h2&gt;
 &lt;p&gt;valine需要用到LeanCloud网站，去该网站注册一个账号。创建应用，计价方式选择免费的开发版，设置好会得到你所创建应用的 client 和 key，这两个东西后面要用到。然后在安全中心绑定自己的网站域名，到了这里，LeanCloud的设置基本就结束了，下面为博客配置valine。&lt;/p&gt;

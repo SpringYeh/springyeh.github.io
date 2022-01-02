@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>工作区和暂存区 - Wiki | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+<script src="/assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script></head>
+
+<body class="body-chapter">
+	<script>
+  if ('Wiki' == '诗') {
+    $('body').addClass("poem-page");
+    // console.log( 'Wiki' );
+  } else if ('Wiki' == '万事集') {
+    $('body').addClass("tale-page");
+    // console.log( 'Wiki' );
+  }
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+  <nav role="navigation">
+    <ul class="summary">
+      <li class="chapter ">
+        <a href="/wiki/" class="custom-link">Wiki</a>
+      </li>
+      <li class="divider"></li><li class="chapter "><a href="/wiki/git.html">廖雪峰的Git教程</a><ul class="articles"><li class="chapter ">
+            <a href="/wiki/git/1.html">安装Git</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/2.html">创建版本库(repository)</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/3.html">时光机穿梭</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/4.html">版本回退</a>
+          </li><li class="chapter active">
+            <a href="/wiki/git/5.html">工作区和暂存区</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/6.html">管理修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/7.html">撤销修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/8.html">删除文件</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/9.html">远程仓库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/10.html">添加远程库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/11.html">从远程库克隆</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/12.html">创建与合并分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/13.html">解决冲突</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/14.html">分支管理策略</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/15.html">Bug分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/16.html">Feature分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/17.html">多人协作</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/18.html">Rebase</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/19.html">使用GitHub</a>
+          </li></ul></li></ul>
+  </nav>
+</div>
+<div class="book__body">
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><a href="/archive.html" class="sidebar__toggler">
+  <span class="sidebar__toggler_top"></span>
+  <span class="sidebar__toggler_middle"></span>
+  <span class="sidebar__toggler_bottom"></span>
+</a><div class="book-header" role="navigation">
+    <a href="#" id="summaryToggler" class="summary__toggler">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="1"></circle>
+  <circle cx="19" cy="12" r="1"></circle>
+  <circle cx="5" cy="12" r="1"></circle>
+</svg>
+
+    </a>
+<!--   <h1>
+    工作区和暂存区 - Wiki
+  </h1> -->
+</div><main class="chapter__wrapper" tabindex="-1" role="main">
+        <div class="chapter__inner">
+          <article class="chapter__content content">
+            <h1 id="工作区和暂存区">工作区和暂存区</h1>
+
+<p>Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。</p>
+
+<p>先来看名词解释。</p>
+
+<h4 id="工作区working-directory">工作区（Working Directory）</h4>
+
+<p>就是你在电脑里能看到的目录，比如我的<code class="highlighter-rouge">learngit</code>文件夹就是一个工作区：</p>
+
+<h4 id="版本库repository">版本库（Repository）</h4>
+
+<p>工作区有一个隐藏目录<code class="highlighter-rouge">.git</code>，这个不算工作区，而是Git的版本库。</p>
+
+<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支<code class="highlighter-rouge">master</code>，以及指向<code class="highlighter-rouge">master</code>的一个指针叫<code class="highlighter-rouge">HEAD</code>。</p>
+
+<p><img src="/assets/img/book//%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA.assets/0-16403353183111.jpg" alt="git-repo"></p>
+
+<p>分支和<code class="highlighter-rouge">HEAD</code>的概念我们以后再讲。</p>
+
+<p>前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
+
+<p>第一步是用<code class="highlighter-rouge">git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
+
+<p>第二步是用<code class="highlighter-rouge">git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
+
+<p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个<code class="highlighter-rouge">master</code>分支，所以，现在，<code class="highlighter-rouge">git commit</code>就是往<code class="highlighter-rouge">master</code>分支上提交更改。</p>
+
+<p>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
+
+<p>俗话说，实践出真知。现在，我们再练习一遍，先对<code class="highlighter-rouge">readme.txt</code>做个修改，比如加上一行内容：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+</code></pre></div></div>
+
+<p>然后，在工作区新增一个<code class="highlighter-rouge">LICENSE</code>文本文件（内容随便写）。</p>
+
+<p>先用<code class="highlighter-rouge">git status</code>查看一下状态：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   readme.txt
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+	LICENSE
+
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre></div></div>
+
+<p>Git非常清楚地告诉我们，<code class="highlighter-rouge">readme.txt</code>被修改了，而<code class="highlighter-rouge">LICENSE</code>还从来没有被添加过，所以它的状态是<code class="highlighter-rouge">Untracked</code>。</p>
+
+<p>现在，使用两次命令<code class="highlighter-rouge">git add</code>，把<code class="highlighter-rouge">readme.txt</code>和<code class="highlighter-rouge">LICENSE</code>都添加后，用<code class="highlighter-rouge">git status</code>再查看一下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+	new file:   LICENSE
+	modified:   readme.txt
+</code></pre></div></div>
+
+<p>现在，暂存区的状态就变成这样了：</p>
+
+<p><img src="/assets/img/book//%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA.assets/1-16403355057822.jpg" alt="git-stage"></p>
+
+<p>所以，<code class="highlighter-rouge">git add</code>命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行<code class="highlighter-rouge">git commit</code>就可以一次性把暂存区的所有修改提交到分支。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git commit -m "understand how stage works"
+[master e43a48b] understand how stage works
+ 2 files changed, 2 insertions(+)
+ create mode 100644 LICENSE
+</code></pre></div></div>
+
+<p>一旦提交后，如果你又没有对工作区做任何修改，那么工作区就是“干净”的：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git status
+On branch master
+nothing to commit, working tree clean
+</code></pre></div></div>
+
+<p>现在版本库变成了这样，暂存区就没有任何内容了：</p>
+
+<p><img src="/assets/img/book//%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA.assets/2-16403357816204.jpg" alt="git-stage-after-commit"></p>
+
+<hr>
+
+<h3 id="小结">小结</h3>
+
+<p>暂存区是Git非常重要的概念，弄明白了暂存区，就弄明白了Git的很多操作到底干了什么。</p>
+
+<p>没弄明白暂存区是怎么回事的童鞋，请向上滚动页面，再看一次。</p>
+
+          </article>
+        </div><footer class="site-footer">
+  © 2022<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+</main>
+    </div><a href="/wiki/git/4.html" class="navigation navigation-prev"
+      aria-label="Previous page: 版本回退"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M20 30 L8 16 20 2" />
+</svg>
+</a><a href="/wiki/git/6.html" class="navigation navigation-next"
+      aria-label="Next page: 管理修改"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M12 30 L24 16 12 2" />
+</svg>
+</a></div>
+</div>
+</body>
+
+</html>

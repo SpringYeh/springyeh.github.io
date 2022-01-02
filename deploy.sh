@@ -7,6 +7,5 @@
 cd _site/
 git add .
 git commit -m "deploy"
-git push
 git push gitee master
 cd ..

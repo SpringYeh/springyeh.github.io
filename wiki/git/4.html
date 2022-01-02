@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content=""><title>版本回退 - Wiki | 一叶知秋</title><script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?f5d6cbe800b85fe8f7d5f2a9a9fb22d6";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  <meta name="keywords" content="一叶知秋, 原创博客,生活, cinzano, Jekyll, blog">
+  <meta name="description" content="一叶知秋|日常|PAT|书|少女与猫|诗词集"><link rel="stylesheet" href="https://at.alicdn.com/t/font_1572012_xhxate8uig.css">
+<link rel="stylesheet" href="/assets/main.css?v=0.1.7" />
+<link rel="stylesheet" href="/assets/css/custom.css" />
+
+<script src="/assets/js/main.js?v=0.1.7" defer></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- 原样式 -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/monokai-sublime.min.css" />
+<script src="/assets/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js" defer></script></head>
+
+<body class="body-chapter">
+	<script>
+  if ('Wiki' == '诗') {
+    $('body').addClass("poem-page");
+    // console.log( 'Wiki' );
+  } else if ('Wiki' == '万事集') {
+    $('body').addClass("tale-page");
+    // console.log( 'Wiki' );
+  }
+</script>
+
+<div class="book__wrapper sidebar-right" id="bookMain"><div class="book-summary" id="bookSummary">
+  <nav role="navigation">
+    <ul class="summary">
+      <li class="chapter ">
+        <a href="/wiki/" class="custom-link">Wiki</a>
+      </li>
+      <li class="divider"></li><li class="chapter "><a href="/wiki/git.html">廖雪峰的Git教程</a><ul class="articles"><li class="chapter ">
+            <a href="/wiki/git/1.html">安装Git</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/2.html">创建版本库(repository)</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/3.html">时光机穿梭</a>
+          </li><li class="chapter active">
+            <a href="/wiki/git/4.html">版本回退</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/5.html">工作区和暂存区</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/6.html">管理修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/7.html">撤销修改</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/8.html">删除文件</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/9.html">远程仓库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/10.html">添加远程库</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/11.html">从远程库克隆</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/12.html">创建与合并分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/13.html">解决冲突</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/14.html">分支管理策略</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/15.html">Bug分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/16.html">Feature分支</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/17.html">多人协作</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/18.html">Rebase</a>
+          </li><li class="chapter ">
+            <a href="/wiki/git/19.html">使用GitHub</a>
+          </li></ul></li></ul>
+  </nav>
+</div>
+<div class="book__body">
+    <div class="body__inner"><a href="/" class="logo"><img src="/assets/img/logo.svg" class="logo_img"><h1>一叶知秋</h1>
+</a><a href="/archive.html" class="sidebar__toggler">
+  <span class="sidebar__toggler_top"></span>
+  <span class="sidebar__toggler_middle"></span>
+  <span class="sidebar__toggler_bottom"></span>
+</a><div class="book-header" role="navigation">
+    <a href="#" id="summaryToggler" class="summary__toggler">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="1"></circle>
+  <circle cx="19" cy="12" r="1"></circle>
+  <circle cx="5" cy="12" r="1"></circle>
+</svg>
+
+    </a>
+<!--   <h1>
+    版本回退 - Wiki
+  </h1> -->
+</div><main class="chapter__wrapper" tabindex="-1" role="main">
+        <div class="chapter__inner">
+          <article class="chapter__content content">
+            <h1 id="版本回退">版本回退</h1>
+
+<p>现在，你已经学会了修改文件，然后把修改提交到Git版本库，现在，再练习一次，修改readme.txt文件如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Git is a distributed version control system.
+Git is free software distributed under the GPL.
+</code></pre></div></div>
+
+<p>然后尝试提交：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git add readme.txt
+$ git commit -m "append GPL"
+[master 1094adb] append GPL
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre></div></div>
+
+<p>像这样，你不断对文件进行修改，然后不断提交修改到版本库里，就好比玩RPG游戏时，每通过一关就会自动把游戏状态存盘，如果某一关没过去，你还可以选择读取前一关的状态。有些时候，在打Boss之前，你会手动存盘，以便万一打Boss失败了，可以从最近的地方重新开始。Git也是一样，每当你觉得文件修改到一定程度的时候，就可以“保存一个快照”，这个快照在Git中被称为<code class="highlighter-rouge">commit</code>。一旦你把文件改乱了，或者误删了文件，还可以从最近的一个<code class="highlighter-rouge">commit</code>恢复，然后继续工作，而不是把几个月的工作成果全部丢失。</p>
+
+<p>现在，我们回顾一下<code class="highlighter-rouge">readme.txt</code>文件一共有几个版本被提交到Git仓库里了：</p>
+
+<p>版本1：wrote a readme file</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Git is a version control system.
+Git is free software.
+</code></pre></div></div>
+
+<p>版本2：add distributed</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Git is a distributed version control system.
+Git is free software.
+</code></pre></div></div>
+
+<p>版本3：append GPL</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Git is a distributed version control system.
+Git is free software distributed under the GPL.
+</code></pre></div></div>
+
+<p>当然了，在实际工作中，我们脑子里怎么可能记得一个几千行的文件每次都改了什么内容，不然要版本控制系统干什么。版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用<code class="highlighter-rouge">git log</code>命令查看：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log
+commit 1094adb7b9b3807259d8cb349e7df1d4d6477073 (HEAD -&gt; master)
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 21:06:15 2018 +0800
+
+    append GPL
+
+commit e475afc93c209a690c39c13a46716e8fa000c366
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 21:03:36 2018 +0800
+
+    add distributed
+
+commit eaadf4e385e865d25c48e7ca9c8395c3f7dfaef0
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 20:59:18 2018 +0800
+
+    wrote a readme file
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">git log</code>命令显示从最近到最远的提交日志，我们可以看到3次提交，最近的一次是<code class="highlighter-rouge">append GPL</code>，上一次是<code class="highlighter-rouge">add distributed</code>，最早的一次是<code class="highlighter-rouge">wrote a readme file</code>。</p>
+
+<p>如果嫌输出信息太多，看得眼花缭乱的，可以试试加上<code class="highlighter-rouge">--pretty=oneline</code>参数：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log --pretty=oneline
+1094adb7b9b3807259d8cb349e7df1d4d6477073 (HEAD -&gt; master) append GPL
+e475afc93c209a690c39c13a46716e8fa000c366 add distributed
+eaadf4e385e865d25c48e7ca9c8395c3f7dfaef0 wrote a readme file
+</code></pre></div></div>
+
+<p>需要友情提示的是，你看到的一大串类似<code class="highlighter-rouge">1094adb...</code>的是<code class="highlighter-rouge">commit id</code>（版本号），和SVN不一样，Git的<code class="highlighter-rouge">commit id</code>不是1，2，3……递增的数字，而是一个SHA1计算出来的一个非常大的数字，用十六进制表示，而且你看到的<code class="highlighter-rouge">commit id</code>和我的肯定不一样，以你自己的为准。为什么<code class="highlighter-rouge">commit id</code>需要用这么一大串数字表示呢？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。</p>
+
+<p>每提交一个新版本，实际上Git就会把它们自动串成一条时间线。如果使用可视化工具查看Git历史，就可以更清楚地看到提交历史的时间线</p>
+
+<p>好了，现在我们启动时光穿梭机，准备把<code class="highlighter-rouge">readme.txt</code>回退到上一个版本，也就是<code class="highlighter-rouge">add distributed</code>的那个版本，怎么做呢？</p>
+
+<p>首先，Git必须知道当前版本是哪个版本，在Git中，用<code class="highlighter-rouge">HEAD</code>表示当前版本，也就是最新的提交<code class="highlighter-rouge">1094adb...</code>（注意我的提交ID和你的肯定不一样），上一个版本就是<code class="highlighter-rouge">HEAD^</code>，上上一个版本就是<code class="highlighter-rouge">HEAD^^</code>，当然往上100个版本写100个<code class="highlighter-rouge">^</code>比较容易数不过来，所以写成<code class="highlighter-rouge">HEAD~100</code>。</p>
+
+<p>现在，我们要把当前版本<code class="highlighter-rouge">append GPL</code>回退到上一个版本<code class="highlighter-rouge">add distributed</code>，就可以使用<code class="highlighter-rouge">git reset</code>命令：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git reset --hard HEAD^
+HEAD is now at e475afc add distributed
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">--hard</code>参数有啥意义？这个后面再讲，现在你先放心使用。</p>
+
+<p>看看<code class="highlighter-rouge">readme.txt</code>的内容是不是版本<code class="highlighter-rouge">add distributed</code>：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software.
+</code></pre></div></div>
+
+<p>果然被还原了。</p>
+
+<p>还可以继续回退到上一个版本<code class="highlighter-rouge">wrote a readme file</code>，不过且慢，让我们用<code class="highlighter-rouge">git log</code>再看看现在版本库的状态：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log
+commit e475afc93c209a690c39c13a46716e8fa000c366 (HEAD -&gt; master)
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 21:03:36 2018 +0800
+
+    add distributed
+
+commit eaadf4e385e865d25c48e7ca9c8395c3f7dfaef0
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 20:59:18 2018 +0800
+
+    wrote a readme file
+</code></pre></div></div>
+
+<p>最新的那个版本<code class="highlighter-rouge">append GPL</code>已经看不到了！好比你从21世纪坐时光穿梭机来到了19世纪，想再回去已经回不去了，肿么办？</p>
+
+<p>办法其实还是有的，只要上面的命令行窗口还没有被关掉，你就可以顺着往上找啊找啊，找到那个<code class="highlighter-rouge">append GPL</code>的<code class="highlighter-rouge">commit id</code>是<code class="highlighter-rouge">1094adb...</code>，于是就可以指定回到未来的某个版本：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git reset --hard 1094a
+HEAD is now at 83b0afe append GPL
+</code></pre></div></div>
+
+<p>版本号没必要写全，前几位就可以了，Git会自动去找。当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了。</p>
+
+<p>再小心翼翼地看看<code class="highlighter-rouge">readme.txt</code>的内容：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+</code></pre></div></div>
+
+<p>果然，我胡汉三又回来了。</p>
+
+<p>Git的版本回退速度非常快，因为Git在内部有个指向当前版本的<code class="highlighter-rouge">HEAD</code>指针，当你回退版本的时候，Git仅仅是把HEAD从指向<code class="highlighter-rouge">append GPL</code>：</p>
+
+<pre><code class="language-ascii">┌────┐
+│HEAD│
+└────┘
+   │
+   └──&gt; ○ append GPL
+        │
+        ○ add distributed
+        │
+        ○ wrote a readme file
+</code></pre>
+
+<p>改为指向<code class="highlighter-rouge">add distributed</code>：</p>
+
+<pre><code class="language-ascii">┌────┐
+│HEAD│
+└────┘
+   │
+   │    ○ append GPL
+   │    │
+   └──&gt; ○ add distributed
+        │
+        ○ wrote a readme file
+</code></pre>
+
+<p>然后顺便把工作区的文件更新了。所以你让<code class="highlighter-rouge">HEAD</code>指向哪个版本号，你就把当前版本定位在哪。</p>
+
+<p>现在，你回退到了某个版本，关掉了电脑，第二天早上就后悔了，想恢复到新版本怎么办？找不到新版本的<code class="highlighter-rouge">commit id</code>怎么办？</p>
+
+<p>在Git中，总是有后悔药可以吃的。当你用<code class="highlighter-rouge">$ git reset --hard HEAD^</code>回退到<code class="highlighter-rouge">add distributed</code>版本时，再想恢复到<code class="highlighter-rouge">append GPL</code>，就必须找到<code class="highlighter-rouge">append GPL</code>的commit id。Git提供了一个命令<code class="highlighter-rouge">git reflog</code>用来记录你的每一次命令：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git reflog
+e475afc HEAD@{1}: reset: moving to HEAD^
+1094adb (HEAD -&gt; master) HEAD@{2}: commit: append GPL
+e475afc HEAD@{3}: commit: add distributed
+eaadf4e HEAD@{4}: commit (initial): wrote a readme file
+</code></pre></div></div>
+
+<p>终于舒了口气，从输出可知，<code class="highlighter-rouge">append GPL</code>的commit id是<code class="highlighter-rouge">1094adb</code>，现在，你又可以乘坐时光机回到未来了。</p>
+
+<hr>
+
+<h3 id="小结">小结</h3>
+
+<p>现在总结一下：</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">HEAD</code>指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code class="highlighter-rouge">git reset --hard commit_id</code>。</li>
+  <li>穿梭前，用<code class="highlighter-rouge">git log</code>可以查看提交历史，以便确定要回退到哪个版本。</li>
+  <li>要重返未来，用<code class="highlighter-rouge">git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</li>
+</ul>
+
+          </article>
+        </div><footer class="site-footer">
+  © 2022<a href="/">一叶知秋</a>. All rights reserved.
+</footer>
+</main>
+    </div><a href="/wiki/git/3.html" class="navigation navigation-prev"
+      aria-label="Previous page: 时光机穿梭"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M20 30 L8 16 20 2" />
+</svg>
+</a><a href="/wiki/git/5.html" class="navigation navigation-next"
+      aria-label="Next page: 工作区和暂存区"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <path d="M12 30 L24 16 12 2" />
+</svg>
+</a></div>
+</div>
+</body>
+
+</html>
